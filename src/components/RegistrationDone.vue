@@ -309,14 +309,35 @@ const full = {
   registration: reg.selected
 };
 
+
 function generateTrackingCode() {
+ const nationalCode = full.personal?.nationalCode || 'UNKNOWN';
+
+  const storedCode = localStorage.getItem('tracking-code-' + nationalCode);
+  if (storedCode) return storedCode;
+
+  let hash = 0;
+  for (let i = 0; i < nationalCode.length; i++) {
+    hash = (hash << 5) - hash + nationalCode.charCodeAt(i);
+    hash |= 0;
+  }
+
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   let code = 'SWIM-';
   for (let i = 0; i < 8; i++) {
-    code += chars.charAt(Math.floor(Math.random() * chars.length));
+    code += chars[Math.abs((hash >> (i * 4)) % chars.length)];
   }
+
+  // ذخیره در localStorage
+  localStorage.setItem('tracking-code-' + nationalCode, code);
+
   return code;
+
 }
+const trackingCode = generateTrackingCode();
+
+
+
 
 function getMajorName(major) {
   const majors = {
@@ -339,10 +360,10 @@ function downloadCertificate() {
       <title>گواهی ثبت‌نام مسابقات شنا</title>
       <style>
         @page { size: A4 landscape; margin: 0; }
-        body { 
-          font-family: 'B Nazanin', 'Iranian Sans', Tahoma, sans-serif; 
-          margin: 0; 
-          padding: 40px; 
+        body {
+          font-family: 'B Nazanin', 'Iranian Sans', Tahoma, sans-serif;
+          margin: 0;
+          padding: 40px;
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           min-height: 100vh;
           display: flex;
@@ -458,11 +479,11 @@ function downloadCertificate() {
             <h1>گواهی ثبت‌نام در مسابقات استانی شنا</h1>
             <h2>دی‌ماه ۱۴۰۴ - استخر شهید رئیسی</h2>
           </div>
-          
+
           <div class="tracking-code">
             ${generateTrackingCode()}
           </div>
-          
+
           <div class="user-info">
             <div class="info-row">
               <span class="label">نام و نام خانوادگی:</span>
@@ -497,7 +518,7 @@ function downloadCertificate() {
               <span class="value">${full.personal.registrationDate} - ${full.personal.registrationTime}</span>
             </div>
           </div>
-          
+
           <div class="footer">
             <div class="signature">
               <p>مهر و امضای مسئول ثبت‌نام</p>
@@ -510,7 +531,7 @@ function downloadCertificate() {
               <p>فدراسیون شنا</p>
             </div>
           </div>
-          
+
           <div style="margin-top: 30px; color: #666; font-size: 14px; text-align: center;">
             <p>این سند به منزله تأیید ثبت‌نام رسمی در مسابقات می‌باشد.</p>
             <p>لطفاً کارت شناسایی و این گواهی را در روز مسابقه همراه داشته باشید.</p>
@@ -543,8 +564,8 @@ function printSummary() {
       <title>فاکتور ثبت‌نام مسابقات شنا</title>
       <style>
         @page { size: A4; margin: 20mm; }
-        body { 
-          font-family: 'B Nazanin', 'Iranian Sans', Tahoma, sans-serif; 
+        body {
+          font-family: 'B Nazanin', 'Iranian Sans', Tahoma, sans-serif;
           line-height: 1.6;
           color: #333;
         }
@@ -655,13 +676,13 @@ function printSummary() {
         <h2>دی‌ماه ۱۴۰۴ - استخر شهید رئیسی</h2>
         <p>تاریخ صدور: ${new Date().toLocaleDateString('fa-IR')}</p>
       </div>
-      
+
       <div class="tracking">
         <p><strong>کد رهگیری:</strong></p>
         <div class="tracking-code">${generateTrackingCode()}</div>
         <p style="color: #666; font-size: 14px;">این کد را برای پیگیری‌های بعدی نگه دارید</p>
       </div>
-      
+
       <div class="invoice-details">
         <div style="flex: 1;">
           <p><strong>ثبت‌نام کننده:</strong> ${full.personal?.name || '---'}</p>
@@ -672,7 +693,7 @@ function printSummary() {
           <p><strong>تاریخ مسابقه:</strong> ${full.registration?.periodTime || '---'}</p>
         </div>
       </div>
-      
+
       <div class="section">
         <h3>📋 جزئیات مسابقه</h3>
         <div class="info-grid">
@@ -698,7 +719,7 @@ function printSummary() {
           </div>
         </div>
       </div>
-      
+
       <div class="section">
         <h3>💰 جزئیات مالی</h3>
         <div class="info-grid">
@@ -716,14 +737,14 @@ function printSummary() {
           </div>
         </div>
       </div>
-      
+
       <div class="total">
         <p>مبلغ قابل پرداخت</p>
         <div class="total-amount">
           ${full.registration?.fee ? full.registration.fee.toLocaleString('fa-IR') + ' تومان' : 'رایگان'}
         </div>
       </div>
-      
+
       <div class="section">
         <h3>📋 شرایط و ضوابط</h3>
         <ul style="color: #666; padding-right: 20px;">
@@ -733,14 +754,14 @@ function printSummary() {
           <li>این فاکتور به همراه کد رهگیری معتبر می‌باشد</li>
         </ul>
       </div>
-      
+
       <div class="footer">
         <p><strong>آدرس:</strong> تهران، استخر شهید رئیسی</p>
         <p><strong>تلفن پشتیبانی:</strong> ۰۲۱-۱۲۳۴۵۶۷۸ | <strong>ایمیل:</strong> support@swim.ir</p>
         <p>با تشکر از ثبت‌نام شما در مسابقات استانی شنا</p>
         <p style="margin-top: 20px; font-size: 12px;">این فاکتور به صورت خودکار تولید شده و نیاز به مهر و امضا ندارد</p>
       </div>
-      
+
       <div class="no-print" style="text-align: center; margin-top: 30px;">
         <button onclick="window.print()" style="padding: 10px 20px; background: #0066cc; color: white; border: none; border-radius: 5px; cursor: pointer;">
           🖨️ چاپ فاکتور

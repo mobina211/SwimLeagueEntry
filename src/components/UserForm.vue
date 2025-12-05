@@ -328,7 +328,7 @@ function validateNationalCode() {
   const nationalCodeRegex = /^\d{10}$/;
 
   if (!code) {
-    errors.nationalCode = "کد ملی الزامی است";
+    errors.nationalCode = " الزامی است";
   } else if (!nationalCodeRegex.test(code)) {
     errors.nationalCode = "کد ملی باید ۱۰ رقم باشد";
   } else {

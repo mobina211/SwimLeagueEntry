@@ -77,12 +77,19 @@ function doPost(e) {
     const insuranceUrl = saveImageToDrive(uploads.insurance, "insurance");
     const idcardUrl = saveImageToDrive(uploads.idcard, "idcard");
     const receiptUrl = saveImageToDrive(uploads.receipt, "receipt");
+    
+
 
     // columns: timestamp, name, nationalCode, eventTitle, raceName, fee, insuranceUrl, idcardUrl, receiptUrl, rawRegistrationJSON
     sheet.appendRow([
       ts,
       personal.name || "",
+      personal.fatherName || "",
       personal.nationalCode || "",
+      personal.schoolName || "",
+      personal.coachName || "",
+      personal.birthYear || "",
+      personal.phone || "",
       registration.eventTitle || "",
       registration.raceName || "",
       registration.fee || "",
