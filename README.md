@@ -42,3 +42,63 @@ npm run build
 ```sh
 npm run lint
 ```
+
+### google app script
+
+```javascript
+function doPost(e) {
+  try {
+    const payload = JSON.parse(e.postData.contents);
+    const ss = SpreadsheetApp.getActive();
+    const sheet = ss.getSheetByName("FormData") || ss.getSheets()[0];
+
+    const ts = payload.timestamp || new Date().toISOString();
+    const personal = payload.personal || {};
+    const registration = payload.registration || {};
+    const uploads = payload.uploads || {};
+
+    function saveImageToDrive(dataUrl, filenamePrefix) {
+      if (!dataUrl) return "";
+      const m = dataUrl.match(/^data:(image\/[a-zA-Z+.-]+);base64,(.+)$/);
+      if (!m) return "";
+      const contentType = m[1];
+      const b64 = m[2];
+      const bytes = Utilities.base64Decode(b64);
+      const blob = Utilities.newBlob(bytes, contentType, filenamePrefix + "-" + new Date().getTime());
+      const file = DriveApp.createFile(blob);
+      // make link viewable by anyone with link:
+      try {
+        file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+      } catch (shareErr) {
+      }
+      return file.getUrl();
+    }
+
+    const insuranceUrl = saveImageToDrive(uploads.insurance, "insurance");
+    const idcardUrl = saveImageToDrive(uploads.idcard, "idcard");
+    const receiptUrl = saveImageToDrive(uploads.receipt, "receipt");
+
+    // columns: timestamp, name, nationalCode, eventTitle, raceName, fee, insuranceUrl, idcardUrl, receiptUrl, rawRegistrationJSON
+    sheet.appendRow([
+      ts,
+      personal.name || "",
+      personal.nationalCode || "",
+      registration.eventTitle || "",
+      registration.raceName || "",
+      registration.fee || "",
+      insuranceUrl,
+      idcardUrl,
+      receiptUrl,
+      JSON.stringify(registration)
+    ]);
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ ok: true }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ ok: false, error: String(err) }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+```
