@@ -64,18 +64,7 @@
         <div
           class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/20 to-green-500/20 border border-emerald-400/30">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse ml-2"></span>
-          <span class="text-sm text-emerald-300 font-medium">پرداخت امن • رمزگذاری شده</span>
-        </div>
-      </div>
-
-      <!-- Progress indicator -->
-      <div class="mb-10">
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-sm text-emerald-300 font-medium">مرحله ۵ از ۵</span>
-          <span class="text-sm text-cyan-200">۱۰۰٪ تکمیل شده</span>
-        </div>
-        <div class="h-2 bg-white/10 rounded-full overflow-hidden">
-          <div class="h-full bg-gradient-to-r from-emerald-500 via-green-500 to-cyan-500 rounded-full w-full"></div>
+          <span class="text-sm text-emerald-300 font-medium">پرداخت امن</span>
         </div>
       </div>
 
@@ -84,14 +73,12 @@
         class="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 overflow-hidden">
         <!-- Registration summary -->
         <div class="p-6 md:p-8 border-b border-white/10">
-          <div class="flex items-start space-x-4 space-x-reverse mb-6">
-            <div
-              class="w-16 h-16 rounded-2xl bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-400/30 flex items-center justify-center">
-              <span class="text-3xl">🏊</span>
-            </div>
+          <div class="flex items-start mb-6">
             <div class="flex-1">
-              <h2 class="text-xl font-bold text-white mb-2">خلاصه ثبت‌نام</h2>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <h2 class="text-xl font-bold text-white mb-4">خلاصه ثبت‌نام</h2>
+
+              <!-- User basic info -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 <div class="space-y-3">
                   <div class="flex items-center">
                     <div
@@ -100,7 +87,7 @@
                     </div>
                     <div>
                       <p class="text-sm text-cyan-200">نام شناگر</p>
-                      <p class="font-bold text-white">{{ reg.user?.name || '---' }}</p>
+                      <p class="font-bold text-white">{{ userData?.name || '---' }}</p>
                     </div>
                   </div>
                   <div class="flex items-center">
@@ -110,7 +97,7 @@
                     </div>
                     <div>
                       <p class="text-sm text-cyan-200">سن</p>
-                      <p class="font-bold text-white">{{ reg.user?.age || '---' }} سال</p>
+                      <p class="font-bold text-white">{{ userData?.age || '---' }} سال</p>
                     </div>
                   </div>
                 </div>
@@ -118,21 +105,46 @@
                   <div class="flex items-center">
                     <div
                       class="w-8 h-8 rounded-lg bg-gradient-to-r from-yellow-500/20 to-orange-500/20 flex items-center justify-center ml-3">
-                      <span class="text-sm">{{ getMajorIcon(reg.user?.major) }}</span>
+                      <span class="text-sm">{{ getMajorIcon(selectedMajors[0]) }}</span>
                     </div>
                     <div>
-                      <p class="text-sm text-cyan-200">رشته انتخابی</p>
+                      <p class="text-sm text-cyan-200">رشته‌های انتخابی</p>
                       <p class="font-bold text-white">{{ displayMajor }}</p>
                     </div>
                   </div>
                   <div class="flex items-center">
                     <div
                       class="w-8 h-8 rounded-lg bg-gradient-to-r from-emerald-500/20 to-green-500/20 flex items-center justify-center ml-3">
-                      <span class="text-sm">🏆</span>
+                      <span class="text-sm">📅</span>
                     </div>
                     <div>
-                      <p class="text-sm text-cyan-200">مسابقه</p>
-                      <p class="font-bold text-white">{{ reg.selected?.raceName || '---' }}</p>
+                      <p class="text-sm text-cyan-200">تاریخ مسابقه</p>
+                      <p class="font-bold text-white">{{ competitionDate }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Selected majors details -->
+              <div class="mt-4">
+                <h3 class="text-lg font-bold text-white mb-3">جزئیات رشته‌های انتخابی:</h3>
+                <div class="space-y-3">
+                  <div v-for="(major, index) in selectedMajors" :key="index"
+                    class="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-white/5 to-white/10">
+                    <div class="flex items-center">
+                      <div class="w-10 h-10 rounded-lg flex items-center justify-center ml-3"
+                        :class="getMajorBadgeClass(major)">
+                        <span class="text-lg">{{ getMajorIcon(major) }}</span>
+                      </div>
+                      <div>
+                        <p class="font-medium text-white">{{ getMajorTitle(major) }}</p>
+                        <p class="text-xs text-cyan-200/70">{{ getMajorDescriptionShort(major) }}</p>
+                      </div>
+                    </div>
+                    <div class="text-right flex">
+                      <p class="text-md text-cyan-200 mx-4">متراژ</p>
+                      <p class="text-white">{{ competitionDistance.toLocaleString('fa-IR') }}</p>
+
                     </div>
                   </div>
                 </div>
@@ -140,31 +152,90 @@
             </div>
           </div>
 
-          <!-- Fee box -->
-          <div class="mt-6 p-4 rounded-2xl"
-            :class="fee > 0 ? 'bg-gradient-to-r from-emerald-500/20 to-green-500/20 border border-emerald-400/30' : 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-cyan-400/30'">
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-sm text-cyan-200">هزینه ثبت‌نام</p>
-                <p class="text-2xl font-black text-white">{{ feeText }}</p>
+          <!-- Total fee box -->
+          <div
+            class="mt-6 p-5 rounded-2xl bg-gradient-to-r from-emerald-500/20 to-green-500/20 border border-emerald-400/30">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+              <div class="mb-4 md:mb-0">
+                <p class="text-sm text-cyan-200">هزینه کل ثبت‌نام</p>
+                <div class="flex items-center space-x-4 space-x-reverse">
+                  <p class="text-3xl font-black text-white">{{ totalFee.toLocaleString('fa-IR') }} تومان</p>
+                  <div v-if="hasDiscount"
+                    class="inline-flex items-center px-3 py-1 rounded-full bg-gradient-to-r from-yellow-500/20 to-orange-500/20">
+                    <span class="text-yellow-300 text-sm font-medium">تخفیف ۲۰٪</span>
+                  </div>
+                </div>
               </div>
-              <div class="text-4xl">
-                {{ fee > 0 ? '💰' : '🎁' }}
+
+              <div class="text-center md:text-right">
+                <div class="flex items-center justify-center md:justify-end mb-2">
+                  <span class="text-cyan-200 text-sm ml-2">تعداد رشته‌ها:</span>
+                  <span class="font-bold text-white text-lg">{{ selectedMajors.length }} رشته</span>
+                </div>
               </div>
             </div>
-            <div v-if="fee > 0" class="mt-3 text-sm text-emerald-300 flex items-center">
-              <span class="ml-2">ℹ️</span>
-              <span>این مبلغ غیرقابل استرداد می‌باشد</span>
-            </div>
-            <div v-else class="mt-3 text-sm text-cyan-300 flex items-center">
-              <span class="ml-2">🎉</span>
-              <span>ثبت‌نام در این مسابقه رایگان می‌باشد</span>
+
+            <!-- Fee breakdown -->
+            <div class="mt-4 pt-4 border-t border-emerald-400/20">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div class="text-center p-2 rounded-lg bg-white/5">
+                  <p class="text-xs text-cyan-300">تعداد رشته‌ها</p>
+                  <p class="font-bold text-white">{{ selectedMajors.length }} رشته</p>
+                </div>
+                <div class="text-center p-2 rounded-lg bg-white/5">
+                  <p class="text-xs text-cyan-300">مبلغ کل</p>
+                  <p class="font-bold text-white">{{ totalFee.toLocaleString('fa-IR') }} تومان</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Payment instructions -->
         <div class="p-6 md:p-8">
+          <!-- Competition details -->
+          <div class="mb-8">
+            <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+              <span class="ml-3 text-2xl">🏊</span>
+              اطلاعات مسابقه
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="bg-gradient-to-br from-white/5 to-white/10 p-4 rounded-xl">
+                <div class="flex items-center mb-2">
+                  <span class="text-2xl ml-2">📅</span>
+                  <div>
+                    <p class="text-sm text-cyan-200">تاریخ برگزاری</p>
+                    <p class="font-bold text-white">{{ competitionDate }}</p>
+                    <p class="text-xs text-cyan-300">{{ competitionDay }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-gradient-to-br from-white/5 to-white/10 p-4 rounded-xl">
+                <div class="flex items-center mb-2">
+                  <span class="text-2xl ml-2">⏰</span>
+                  <div>
+                    <p class="text-sm text-cyan-200">ساعت برگزاری</p>
+                    <p class="font-bold text-white">{{ competitionTime }}</p>
+                    <p class="text-xs text-cyan-300">{{ userData?.age < 12 ? 'صبح' : 'بعدازظهر' }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-gradient-to-br from-white/5 to-white/10 p-4 rounded-xl">
+                <div class="flex items-center mb-2">
+                  <span class="text-2xl ml-2">📏</span>
+                  <div>
+                    <p class="text-sm text-cyan-200">متراژ مسابقه</p>
+                    <p class="font-bold text-white">{{ competitionDistance }} متر</p>
+                    <p class="text-xs text-cyan-300">استخر شهید رئیسی</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- Bank card section -->
           <div class="mb-10">
             <h3 class="text-xl font-bold text-white mb-6 flex items-center">
@@ -173,7 +244,7 @@
             </h3>
 
             <!-- Bank card design -->
-            <div class="relative overflow-hidden rounded-2xl">
+            <div class="relative overflow-hidden rounded-2xl mb-8">
               <!-- Card background -->
               <div class="absolute inset-0 bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-700 opacity-90"></div>
 
@@ -189,32 +260,15 @@
               <div class="relative z-10 p-8">
                 <div class="flex items-center justify-between mb-8">
                   <div class="flex items-center">
-                    <div class="w-12 h-8 rounded bg-white/20 ml-3"></div>
-                    <span class="text-white text-sm font-medium">Debit Card</span>
                   </div>
-                  <div class="text-3xl">🏦</div>
                 </div>
 
                 <div class="mb-8">
                   <div class="text-white/80 text-sm mb-2">شماره کارت مقصد</div>
                   <div class="text-3xl font-mono font-bold text-white tracking-widest dir-ltr">
-                    ۶۱۰۴ - ۳۳۷۰ - XXXX - XXXX
+                    6174 - 3376 - 0405 - 5028
                   </div>
-                </div>
-
-                <div class="flex items-center justify-between">
-                  <div>
-                    <div class="text-white/80 text-sm mb-1">بانک</div>
-                    <div class="text-xl font-bold text-white">بانک ملی ایران</div>
-                  </div>
-                  <div>
-                    <div class="text-white/80 text-sm mb-1">تاریخ انقضا</div>
-                    <div class="text-xl font-bold text-white">XX/XX</div>
-                  </div>
-                  <div
-                    class="w-16 h-12 rounded-lg bg-gradient-to-r from-white/20 to-white/10 flex items-center justify-center">
-                    <div class="text-white text-xs">CVV</div>
-                  </div>
+                  <p class="text-white/60 text-sm mt-2">به نام: بهزاد چشفر</p>
                 </div>
               </div>
 
@@ -222,6 +276,12 @@
               <div
                 class="absolute top-4 left-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">
                 🔒 امن
+              </div>
+
+              <!-- Amount badge -->
+              <div
+                class="absolute top-4 right-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                مبلغ: {{ totalFee.toLocaleString('fa-IR') }}
               </div>
             </div>
 
@@ -233,7 +293,7 @@
                   <span class="text-xl">1️⃣</span>
                 </div>
                 <h4 class="font-bold text-white mb-2">انتقال مبلغ</h4>
-                <p class="text-sm text-cyan-200/80">مبلغ را به کارت فوق واریز کنید</p>
+                <p class="text-sm text-cyan-200/80">مبلغ {{ totalFee.toLocaleString('fa-IR') }} تومان را واریز کنید</p>
               </div>
               <div class="text-center p-4 rounded-xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10">
                 <div
@@ -259,7 +319,7 @@
             <div class="flex items-start justify-between mb-6">
               <div class="flex items-center space-x-3 space-x-reverse">
                 <div
-                  class="w-14 h-14 rounded-xl bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-400/30 flex items-center justify-center">
+                  class="w-14 h-14 rounded-xl bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-400/30 flex items-center justify-center mx-4">
                   <span class="text-2xl">🧾</span>
                 </div>
                 <div>
@@ -298,6 +358,9 @@
                   <p class="text-cyan-200/70 text-sm">
                     حداکثر حجم: ۵ مگابایت • فرمت‌های مجاز: JPG, PNG
                   </p>
+                  <p class="text-cyan-300/70 text-xs mt-2">
+                    مبلغ قابل پرداخت: {{ totalFee.toLocaleString('fa-IR') }} تومان
+                  </p>
                 </div>
 
                 <div v-if="!preview"
@@ -328,7 +391,7 @@
                 <div
                   class="absolute bottom-3 left-3 text-xs bg-black/70 text-white px-3 py-2 rounded-lg flex items-center">
                   <span class="ml-2">🧾</span>
-                  <span>رسید پرداخت بانکی</span>
+                  <span>رسید پرداخت بانکی - {{ totalFee.toLocaleString('fa-IR') }} تومان</span>
                 </div>
               </div>
             </div>
@@ -371,10 +434,9 @@
                 <div class="w-6 h-2 rounded-full bg-white/30"></div>
                 <div class="w-6 h-2 rounded-full bg-white/30"></div>
                 <div class="w-6 h-2 rounded-full bg-white/30"></div>
-                <div class="w-6 h-2 rounded-full bg-white/30"></div>
-                <div class="w-10 h-2 rounded-full bg-emerald-500"></div>
+                <div class="w-10 h-2 rounded-full bg-emerald-500 mx-2"></div>
               </div>
-              <p class="text-sm mt-3">مرحله ۵ از ۵ • پرداخت و تکمیل</p>
+              <p class="text-sm mt-3">مرحله ۴ از ۴ • پرداخت و تکمیل</p>
             </div>
 
             <button @click="finalize" :disabled="!preview || processing" :class="[
@@ -408,31 +470,85 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { SHEET_ENDPOINT } from "../config";
 
 const router = useRouter();
-const reg = JSON.parse(sessionStorage.getItem("registration-step") || "{}");
-const uploads = JSON.parse(sessionStorage.getItem("uploads") || "{}");
-const preview = ref(uploads.receipt || null);
+
+// Load data from localStorage
+const userData = ref({});
+const selectedMajors = ref([]);
+const registrationData = ref({});
+
+const preview = ref(null);
 const error = ref("");
 const processing = ref(false);
 
-const fee = computed(() => reg.selected && reg.selected.fee ? reg.selected.fee : 0);
-const feeText = computed(() => fee.value ? `${fee.value.toLocaleString('fa-IR')} تومان` : "رایگان / بدون هزینه");
+// Load data from localStorage on component mount
+onMounted(() => {
+  try {
+    // Load user data
+    const storedUser = JSON.parse(sessionStorage.getItem("user-full") || "{}");
+    userData.value = storedUser;
 
-const displayMajor = computed(() => {
-  const majors = {
-    parvane: "پروانه",
-    sine: "سینه",
-    posht: "پشت",
-    ghorbaqe: "غورباغه",
-    all: "تمامی رشته‌ها"
-  };
-  return majors[reg.user?.major] || reg.user?.major || '---';
+    // Load selected majors (could be single or array)
+    if (storedUser.majors) {
+      selectedMajors.value = Array.isArray(storedUser.majors) ? storedUser.majors : [storedUser.majors];
+    } else if (storedUser.major) {
+      selectedMajors.value = [storedUser.major];
+    }
+
+    // Load registration data
+    const storedReg = JSON.parse(sessionStorage.getItem("registration-step") || "{}");
+    registrationData.value = storedReg;
+
+    // Load uploaded receipt if exists
+    const uploads = JSON.parse(sessionStorage.getItem("uploads") || "{}");
+    if (uploads.receipt) {
+      preview.value = uploads.receipt;
+    }
+
+  } catch (err) {
+    error.value = "خطا در بارگذاری اطلاعات. لطفاً از ابتدا شروع کنید.";
+    console.error("Error loading data:", err);
+  }
 });
 
+// Computed properties
+const perMajorFee = computed(() => {
+  return userData.value.registrationDetails?.perMajorFee || 350000;
+});
+
+const hasDiscount = computed(() => {
+  return false;
+});
+
+const totalFee = computed(() => {
+  return 250000;
+});
+
+const displayMajor = computed(() => {
+  return selectedMajors.value.map(major => getMajorTitle(major)).join(' و ');
+});
+
+const competitionDate = computed(() => {
+  return userData.value.age < 12 ? '۴ دی ۱۴۰۴' : '۵ دی ۱۴۰۴';
+});
+
+const competitionDay = computed(() => {
+  return userData.value.age < 12 ? 'پنجشنبه' : 'جمعه';
+});
+
+const competitionTime = computed(() => {
+  return userData.value.age < 12 ? '۸:۰۰ تا ۱۲:۰۰' : '۱۴:۰۰ تا ۱۸:۰۰';
+});
+
+const competitionDistance = computed(() => {
+  return userData.value.age < 12 ? '۲۵' : '۵۰';
+});
+
+// Helper functions
 function getMajorIcon(major) {
   const icons = {
     parvane: "🦋",
@@ -444,6 +560,40 @@ function getMajorIcon(major) {
   return icons[major] || "🏊";
 }
 
+function getMajorTitle(major) {
+  const titles = {
+    parvane: "پروانه",
+    sine: "سینه",
+    posht: "پشت",
+    ghorbaqe: "قورباغه",
+    all: "همه رشته‌ها"
+  };
+  return titles[major] || major;
+}
+
+function getMajorDescriptionShort(major) {
+  const descriptions = {
+    parvane: "Butterfly Stroke",
+    sine: "Breaststroke",
+    posht: "Backstroke",
+    ghorbaqe: "Breaststroke",
+    all: "All Styles"
+  };
+  return descriptions[major] || "";
+}
+
+function getMajorBadgeClass(major) {
+  const classes = {
+    parvane: 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20',
+    sine: 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20',
+    posht: 'bg-gradient-to-r from-green-500/20 to-emerald-500/20',
+    ghorbaqe: 'bg-gradient-to-r from-purple-500/20 to-pink-500/20',
+    all: 'bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20'
+  };
+  return classes[major] || 'bg-gray-700/30';
+}
+
+// File handling
 function readFile(file) {
   return new Promise((res, rej) => {
     const fr = new FileReader();
@@ -503,12 +653,22 @@ async function finalize() {
   processing.value = true;
   error.value = "";
 
-  // ساخت payload نهایی
-  const userBase = JSON.parse(sessionStorage.getItem("user-full") || "{}");
+  // Build final payload
   const finalPayload = {
     timestamp: new Date().toISOString(),
-    personal: userBase,
-    registration: reg.selected,
+    personal: userData.value,
+    registration: {
+      majors: selectedMajors.value,
+      majorTitles: selectedMajors.value.map(major => getMajorTitle(major)),
+      totalFee: totalFee.value,
+      perMajorFee: perMajorFee.value,
+      hasDiscount: hasDiscount.value,
+      competitionDate: competitionDate.value,
+      competitionTime: competitionTime.value,
+      competitionDistance: competitionDistance.value,
+      competitionDay: competitionDay.value,
+      registrationDate: new Date().toLocaleDateString('fa-IR')
+    },
     uploads: uploads
   };
 
@@ -524,9 +684,13 @@ async function finalize() {
     }
 
     const txt = await res.text();
-    // ذخیره پاسخ سرور 
+    // Save server response
     sessionStorage.setItem("submission-response", txt || "ok");
     sessionStorage.setItem("registration-complete", "true");
+
+    // Save final data for success page
+    sessionStorage.setItem("final-registration", JSON.stringify(finalPayload));
+
     router.push("/done");
   } catch (err) {
     error.value = "خطا در ارسال اطلاعات. لطفاً دوباره تلاش کنید: " + String(err);
