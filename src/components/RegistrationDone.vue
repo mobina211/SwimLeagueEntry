@@ -131,78 +131,16 @@
               </div>
             </div>
 
-            <!-- Registration details -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              <!-- Personal info -->
-              <div class="bg-gradient-to-br from-white/5 to-white/10 rounded-2xl p-6 border border-white/10">
-                <h3 class="text-xl font-bold text-white mb-6 flex items-center">
-                  <span class="ml-3 text-2xl">👤</span>
-                  اطلاعات شخصی
-                </h3>
-                <div class="space-y-4">
-                  <div class="flex items-center justify-between border-b border-white/5 pb-3">
-                    <span class="text-cyan-200">نام و نام خانوادگی</span>
-                    <span class="font-bold text-white">{{ reg.personal?.name || '---' }}</span>
-                  </div>
-                  <div class="flex items-center justify-between border-b border-white/5 pb-3">
-                    <span class="text-cyan-200">کد ملی</span>
-                    <span class="font-bold text-white dir-ltr">{{ reg.personal?.nationalCode || '---' }}</span>
-                  </div>
-                  <div class="flex items-center justify-between border-b border-white/5 pb-3">
-                    <span class="text-cyan-200">سن</span>
-                    <span class="font-bold text-white">{{ reg.personal?.age || '---' }} سال</span>
-                  </div>
-                  <div class="flex items-center justify-between">
-                    <span class="text-cyan-200">رشته انتخابی</span>
-                    <span class="font-bold text-white">{{ getMajorName(reg.personal?.major) }}</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Competition info -->
-              <div class="bg-gradient-to-br from-white/5 to-white/10 rounded-2xl p-6 border border-white/10">
-                <h3 class="text-xl font-bold text-white mb-6 flex items-center">
-                  <span class="ml-3 text-2xl">🏆</span>
-                  اطلاعات مسابقه
-                </h3>
-                <div class="space-y-4">
-                  <div class="flex items-center justify-between border-b border-white/5 pb-3">
-                    <span class="text-cyan-200">نام مسابقه</span>
-                    <span class="font-bold text-white">{{ reg.registration?.raceName || '---' }}</span>
-                  </div>
-                  <div class="flex items-center justify-between border-b border-white/5 pb-3">
-                    <span class="text-cyan-200">رده سنی</span>
-                    <span class="font-bold text-white">{{ reg.registration?.categoryLabel || '---' }}</span>
-                  </div>
-                  <div class="flex items-center justify-between border-b border-white/5 pb-3">
-                    <span class="text-cyan-200">تاریخ و زمان</span>
-                    <span class="font-bold text-white">{{ reg.registration?.periodTime || '---' }}</span>
-                  </div>
-                  <div class="flex items-center justify-between">
-                    <span class="text-cyan-200">هزینه ثبت‌نام</span>
-                    <span :class="[
-                      'font-bold px-3 py-1 rounded-full',
-                      reg.registration?.fee
-                        ? 'bg-gradient-to-r from-emerald-500 to-green-600 text-white'
-                        : 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white'
-                    ]">
-                      {{ reg.registration?.fee ? `${reg.registration.fee.toLocaleString('fa-IR')} تومان` : 'رایگان' }}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <!-- Important notes -->
             <div class="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-cyan-400/30 rounded-2xl p-6">
               <div class="flex items-start">
-                <div class="ml-4 text-3xl">📋</div>
+                <div class="text-3xl">📋</div>
                 <div>
                   <h4 class="text-xl font-bold text-white mb-4">نکات مهم بعد از ثبت‌نام</h4>
                   <ul class="space-y-3 text-cyan-100/80">
                     <li class="flex items-start">
                       <span class="text-green-400 ml-3 mt-1">•</span>
-                      <span>کارت مسابقه شما ۳ روز قبل از مسابقه صادر خواهد شد</span>
+                      <span>فاکتور و رسید را میتوانید از بخش پایین دانلود کنید</span>
                     </li>
                     <li class="flex items-start">
                       <span class="text-green-400 ml-3 mt-1">•</span>
@@ -210,7 +148,7 @@
                     </li>
                     <li class="flex items-start">
                       <span class="text-green-400 ml-3 mt-1">•</span>
-                      <span>کد رهگیری بالا را برای دریافت کارت همراه داشته باشید</span>
+                      <span>کد رهگیری بالا را همراه داشته باشید</span>
                     </li>
                   </ul>
                 </div>
@@ -233,17 +171,7 @@
                 </div>
                 <div class="text-right">
                   <p class="text-sm text-cyan-200">پشتیبانی تلفنی</p>
-                  <p class="font-bold text-white dir-ltr">۰۲۱-۱۲۳۴۵۶۷۸</p>
-                </div>
-              </div>
-              <div class="flex items-center">
-                <div
-                  class="w-10 h-10 rounded-full bg-gradient-to-r from-green-500/20 to-emerald-500/20 flex items-center justify-center ml-3">
-                  <span class="text-lg">✉️</span>
-                </div>
-                <div class="text-right">
-                  <p class="text-sm text-cyan-200">ایمیل پشتیبانی</p>
-                  <p class="font-bold text-white dir-ltr">support@swim.ir</p>
+                  <p class="font-bold text-white dir-ltr">09195486890</p>
                 </div>
               </div>
               <div class="flex items-center">
@@ -253,7 +181,7 @@
                 </div>
                 <div class="text-right">
                   <p class="text-sm text-cyan-200">آدرس استخر</p>
-                  <p class="font-bold text-white">استخر شهید رئیسی، تهران</p>
+                  <p class="font-bold text-white">استخر شهید رئیسی، قزوین</p>
                 </div>
               </div>
             </div>
@@ -293,32 +221,92 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { ref, computed, onMounted } from "vue";
 
 const router = useRouter();
-const raw = JSON.parse(sessionStorage.getItem("submission-response") || "null");
-const reg = JSON.parse(sessionStorage.getItem("registration-step") || "{}");
-const personal = JSON.parse(sessionStorage.getItem("user-full") || "{}");
 
-const full = {
-  personal: {
-    ...personal,
-    registrationDate: new Date().toLocaleDateString('fa-IR'),
-    registrationTime: new Date().toLocaleTimeString('fa-IR')
-  },
-  registration: reg.selected
+// Load data from all available sources
+const loadCompleteData = () => {
+  try {
+    // 1. از sessionStorage
+    const raw = JSON.parse(sessionStorage.getItem("submission-response") || "{}");
+    const reg = JSON.parse(sessionStorage.getItem("registration-step") || "{}");
+    const personal = JSON.parse(sessionStorage.getItem("user-full") || "{}");
+    const userBase = JSON.parse(sessionStorage.getItem("user-base") || "{}");
+
+    // 2. از localStorage
+    const storageKey = 'swim_registration_form';
+    const localData = JSON.parse(localStorage.getItem(storageKey) || "{}");
+
+    // 3. اطلاعات رشته‌های انتخابی از localStorage
+    const selectedMajorsStorage = localStorage.getItem('selectedMajors');
+    const selectedMajors = selectedMajorsStorage ? JSON.parse(selectedMajorsStorage) : [];
+
+    // ادغام تمام اطلاعات
+    const completeData = {
+      // اولویت با sessionStorage
+      ...raw,
+      ...reg,
+      ...personal,
+      ...userBase,
+      // سپس localStorage
+      ...localData,
+      // رشته‌های انتخابی
+      majors: selectedMajors || personal.majors || reg.selectedMajors || [],
+      // اطلاعات اضافی
+      loadingTime: new Date().toISOString()
+    };
+
+    console.log('Complete data loaded:', completeData);
+    return completeData;
+
+  } catch (error) {
+    console.error('Error loading complete data:', error);
+    return {};
+  }
 };
 
+// بارگذاری داده‌های کامل
+const full = ref(loadCompleteData());
 
+// همچنین می‌توانیم در mounted مجدداً بررسی کنیم
+onMounted(() => {
+  // یک بار دیگر داده‌ها را بررسی می‌کنیم
+  full.value = loadCompleteData();
+
+  // برای اطمینان، localStorage را نیز چک می‌کنیم
+  console.log('LocalStorage data:', localStorage.getItem('swim_registration_form'));
+  console.log('Selected majors from localStorage:', localStorage.getItem('selectedMajors'));
+});
+
+const competitionDate = computed(() => {
+  return full.value.age < 12 ? '۴ دی ۱۴۰۴' : '۵ دی ۱۴۰۴';
+});
+
+// تابع بهبود یافته برای تولید کد رهگیری
 function generateTrackingCode() {
- const nationalCode = full.personal?.nationalCode || 'UNKNOWN';
+  // ابتدا از sessionStorage چک می‌کنیم
+  const sessionCode = sessionStorage.getItem('tracking-code');
+  if (sessionCode) return sessionCode;
+
+  // سپس از localStorage چک می‌کنیم
+  const nationalCode = full.value?.nationalCode ||
+    full.value.personal?.nationalCode ||
+    full.value.registration?.nationalCode ||
+    'UNKNOWN';
 
   const storedCode = localStorage.getItem('tracking-code-' + nationalCode);
-  if (storedCode) return storedCode;
+  if (storedCode) {
+    // در sessionStorage هم ذخیره می‌کنیم
+    sessionStorage.setItem('tracking-code', storedCode);
+    return storedCode;
+  }
 
+  // اگر کد وجود نداشت، ایجاد می‌کنیم
   let hash = 0;
-  for (let i = 0; i < nationalCode.length; i++) {
-    hash = (hash << 5) - hash + nationalCode.charCodeAt(i);
+  const inputString = nationalCode + Date.now().toString();
+  for (let i = 0; i < inputString.length; i++) {
+    hash = (hash << 5) - hash + inputString.charCodeAt(i);
     hash |= 0;
   }
 
@@ -328,30 +316,142 @@ function generateTrackingCode() {
     code += chars[Math.abs((hash >> (i * 4)) % chars.length)];
   }
 
-  // ذخیره در localStorage
+  // ذخیره در هر دو محل
   localStorage.setItem('tracking-code-' + nationalCode, code);
+  sessionStorage.setItem('tracking-code', code);
 
   return code;
-
 }
-const trackingCode = generateTrackingCode();
 
+const trackingCode = ref(generateTrackingCode());
 
-
-
+// تابع بهبود یافته برای نام رشته
 function getMajorName(major) {
   const majors = {
     parvane: "پروانه",
     sine: "سینه",
     posht: "پشت",
     ghorbaqe: "غورباغه",
-    all: "همه رشته‌ها"
+    all: "همه رشته‌ها",
+    freestyle: "آزاد",
+    backstroke: "پشت",
+    breaststroke: "سینه",
+    butterfly: "پروانه"
   };
-  return majors[major] || major || '---';
+
+  // اگر رشته از آرایه باشد
+  if (Array.isArray(major)) {
+    return major.map(m => majors[m] || m).join('، ');
+  }
+
+  // اگر رشته مستقیم باشد
+  return majors[major] || major || full.value.majorTitle || full.value.registration?.majorTitle || '---';
 }
 
+// تابع برای دریافت نام رشته‌های انتخابی
+function getSelectedMajors() {
+  // اولویت‌ها برای پیدا کردن رشته‌های انتخابی
+  if (full.value.majors && full.value.majors.length > 0) {
+    return getMajorName(full.value.majors);
+  }
+
+  if (full.value.registration?.majors) {
+    return getMajorName(full.value.registration.majors);
+  }
+
+  if (full.value.personal?.major) {
+    return getMajorName(full.value.personal.major);
+  }
+
+  if (full.value.selectedMajors) {
+    return getMajorName(full.value.selectedMajors);
+  }
+
+  return '---';
+}
+
+// تابع برای دریافت نام کامل
+function getFullName() {
+  const name = full.value.name ||
+    full.value.personal?.name ||
+    full.value.registration?.name ||
+    '---';
+
+  const fatherName = full.value.fatherName ||
+    full.value.personal?.fatherName ||
+    full.value.registration?.fatherName ||
+    '';
+
+  if (fatherName) {
+    return `${name} ${fatherName}`;
+  }
+
+  return name;
+}
+
+// تابع برای دریافت کد ملی
+function getNationalCode() {
+  return full.value.nationalCode ||
+    full.value.personal?.nationalCode ||
+    full.value.registration?.nationalCode ||
+    '---';
+}
+
+// تابع برای دریافت نام مسابقه
+function getRaceName() {
+  return full.value.raceName ||
+    full.value.registration?.raceName ||
+    full.value.personal?.raceName ||
+    'مسابقات استانی شنا';
+}
+
+// تابع برای دریافت رده سنی
+function getCategoryLabel() {
+  return full.value.categoryLabel ||
+    full.value.registration?.categoryLabel ||
+    full.value.personal?.categoryLabel ||
+    (full.value.age ? `رده سنی ${full.value.age} سال` : '---');
+}
+
+// تابع برای دریافت زمان دوره
+function getPeriodTime() {
+  return full.value.periodTime ||
+    full.value.registration?.periodTime ||
+    full.value.personal?.periodTime ||
+    competitionDate.value;
+}
+
+// تابع برای دریافت هزینه
+function getFee() {
+  const fee = full.value.fee ||
+    full.value.registrationFee ||
+    full.value.registration?.fee ||
+    full.value.personal?.registrationFee ||
+    0;
+
+  return fee ? fee.toLocaleString('fa-IR') + ' تومان' : 'رایگان';
+}
+
+// تابع برای دریافت تاریخ و زمان ثبت‌نام
+function getRegistrationDateTime() {
+  if (full.value.personal?.registrationDate && full.value.personal?.registrationTime) {
+    return `${full.value.personal.registrationDate} - ${full.value.personal.registrationTime}`;
+  }
+
+  // اگر در sessionStorage نبود، از localStorage چک می‌کنیم
+  const savedData = JSON.parse(localStorage.getItem('swim_registration_form') || "{}");
+  if (savedData.savedAt) {
+    const date = new Date(savedData.savedAt);
+    return `${date.toLocaleDateString('fa-IR')} - ${date.toLocaleTimeString('fa-IR')}`;
+  }
+
+  // در نهایت تاریخ جاری
+  return new Date().toLocaleDateString('fa-IR') + ' - ' + new Date().toLocaleTimeString('fa-IR');
+}
+
+// تابع بهبود یافته برای دانلود گواهی
 function downloadCertificate() {
-  // Create a printable certificate HTML
+  // ایجاد HTML گواهی با اطلاعات کامل
   const certificateHTML = `
     <!DOCTYPE html>
     <html dir="rtl">
@@ -481,41 +581,53 @@ function downloadCertificate() {
           </div>
 
           <div class="tracking-code">
-            ${generateTrackingCode()}
+            ${trackingCode.value}
           </div>
 
           <div class="user-info">
             <div class="info-row">
               <span class="label">نام و نام خانوادگی:</span>
-              <span class="value">${full.personal?.name || '---'}</span>
+              <span class="value">${getFullName()}</span>
             </div>
             <div class="info-row">
               <span class="label">کد ملی:</span>
-              <span class="value">${full.personal?.nationalCode || '---'}</span>
+              <span class="value">${getNationalCode()}</span>
             </div>
             <div class="info-row">
               <span class="label">رشته انتخابی:</span>
-              <span class="value">${getMajorName(full.personal?.major)}</span>
+              <span class="value">${getSelectedMajors()}</span>
             </div>
             <div class="info-row">
               <span class="label">مسابقه:</span>
-              <span class="value">${full.registration?.raceName || '---'}</span>
+              <span class="value">${getRaceName()}</span>
             </div>
             <div class="info-row">
               <span class="label">رده سنی:</span>
-              <span class="value">${full.registration?.categoryLabel || '---'}</span>
+              <span class="value">${getCategoryLabel()}</span>
             </div>
             <div class="info-row">
-              <span class="label">تاریخ و زمان:</span>
-              <span class="value">${full.registration?.periodTime || '---'}</span>
+              <span class="label">تاریخ و زمان مسابقه:</span>
+              <span class="value">${getPeriodTime()}</span>
             </div>
             <div class="info-row">
               <span class="label">هزینه:</span>
-              <span class="value">${full.registration?.fee ? full.registration.fee.toLocaleString('fa-IR') + ' تومان' : 'رایگان'}</span>
+              <span class="value">${getFee()}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">نام مدرسه:</span>
+              <span class="value">${full.value.schoolName || full.value.personal?.schoolName || '---'}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">مربی:</span>
+              <span class="value">${full.value.coachName || full.value.personal?.coachName || '---'}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">سال تولد:</span>
+              <span class="value">${full.value.birthYear || full.value.personal?.birthYear || '---'}</span>
             </div>
             <div class="info-row">
               <span class="label">تاریخ ثبت‌نام:</span>
-              <span class="value">${full.personal.registrationDate} - ${full.personal.registrationTime}</span>
+              <span class="value">${getRegistrationDateTime()}</span>
             </div>
           </div>
 
@@ -546,13 +658,14 @@ function downloadCertificate() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `گواهی_ثبت_نام_${full.personal?.name || 'شناگر'}.html`;
+  a.download = `گواهی_ثبت_نام_${getFullName().replace(/\s+/g, '_')}.html`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
 
+// تابع بهبود یافته برای چاپ خلاصه
 function printSummary() {
   const printWindow = window.open('', '_blank');
 
@@ -674,23 +787,25 @@ function printSummary() {
         <div class="logo">🏊</div>
         <h1>فاکتور ثبت‌نام مسابقات استانی شنا</h1>
         <h2>دی‌ماه ۱۴۰۴ - استخر شهید رئیسی</h2>
-        <p>تاریخ صدور: ${new Date().toLocaleDateString('fa-IR')}</p>
+        <p>تاریخ صدور: ${getRegistrationDateTime()}</p>
       </div>
 
       <div class="tracking">
         <p><strong>کد رهگیری:</strong></p>
-        <div class="tracking-code">${generateTrackingCode()}</div>
+        <div class="tracking-code">${trackingCode.value}</div>
         <p style="color: #666; font-size: 14px;">این کد را برای پیگیری‌های بعدی نگه دارید</p>
       </div>
 
       <div class="invoice-details">
         <div style="flex: 1;">
-          <p><strong>ثبت‌نام کننده:</strong> ${full.personal?.name || '---'}</p>
-          <p><strong>کد ملی:</strong> ${full.personal?.nationalCode || '---'}</p>
+          <p><strong>ثبت‌نام کننده:</strong> ${getFullName()}</p>
+          <p><strong>کد ملی:</strong> ${getNationalCode()}</p>
+          <p><strong>تلفن:</strong> ${full.value.phone || full.value.personal?.phone || '---'}</p>
         </div>
         <div style="flex: 1; text-align: left;">
           <p><strong>شماره فاکتور:</strong> ${Date.now().toString().slice(-8)}</p>
-          <p><strong>تاریخ مسابقه:</strong> ${full.registration?.periodTime || '---'}</p>
+          <p><strong>تاریخ مسابقه:</strong> ${getPeriodTime()}</p>
+          <p><strong>مدرسه:</strong> ${full.value.schoolName || full.value.personal?.schoolName || '---'}</p>
         </div>
       </div>
 
@@ -699,23 +814,27 @@ function printSummary() {
         <div class="info-grid">
           <div class="info-item">
             <span class="label">نام مسابقه:</span>
-            <span class="value">${full.registration?.raceName || '---'}</span>
+            <span class="value">${getRaceName()}</span>
           </div>
           <div class="info-item">
-            <span class="label">رشته:</span>
-            <span class="value">${getMajorName(full.personal?.major)}</span>
+            <span class="label">رشته انتخابی:</span>
+            <span class="value">${getSelectedMajors()}</span>
           </div>
           <div class="info-item">
             <span class="label">رده سنی:</span>
-            <span class="value">${full.registration?.categoryLabel || '---'}</span>
+            <span class="value">${getCategoryLabel()}</span>
           </div>
           <div class="info-item">
             <span class="label">زمان برگزاری:</span>
-            <span class="value">${full.registration?.periodTime || '---'}</span>
+            <span class="value">${getPeriodTime()}</span>
           </div>
           <div class="info-item">
             <span class="label">مکان:</span>
             <span class="value">استخر شهید رئیسی، تهران</span>
+          </div>
+          <div class="info-item">
+            <span class="label">مربی:</span>
+            <span class="value">${full.value.coachName || full.value.personal?.coachName || '---'}</span>
           </div>
         </div>
       </div>
@@ -725,7 +844,7 @@ function printSummary() {
         <div class="info-grid">
           <div class="info-item">
             <span class="label">هزینه ثبت‌نام:</span>
-            <span class="value">${full.registration?.fee ? full.registration.fee.toLocaleString('fa-IR') + ' تومان' : 'رایگان'}</span>
+            <span class="value">${getFee()}</span>
           </div>
           <div class="info-item">
             <span class="label">تخفیف:</span>
@@ -741,7 +860,7 @@ function printSummary() {
       <div class="total">
         <p>مبلغ قابل پرداخت</p>
         <div class="total-amount">
-          ${full.registration?.fee ? full.registration.fee.toLocaleString('fa-IR') + ' تومان' : 'رایگان'}
+          ${getFee()}
         </div>
       </div>
 
@@ -752,12 +871,12 @@ function printSummary() {
           <li>کارت شناسایی اصل در روز مسابقه همراه داشته باشید</li>
           <li>مدارک بیمه ورزشی باید معتبر باشد</li>
           <li>این فاکتور به همراه کد رهگیری معتبر می‌باشد</li>
+          <li>گواهی ثبت‌نام را دانلود و یا پرینت نمایید</li>
         </ul>
       </div>
 
       <div class="footer">
-        <p><strong>آدرس:</strong> تهران، استخر شهید رئیسی</p>
-        <p><strong>تلفن پشتیبانی:</strong> ۰۲۱-۱۲۳۴۵۶۷۸ | <strong>ایمیل:</strong> support@swim.ir</p>
+        <p><strong>آدرس:</strong> قزوین، استخر شهید رئیسی</p>
         <p>با تشکر از ثبت‌نام شما در مسابقات استانی شنا</p>
         <p style="margin-top: 20px; font-size: 12px;">این فاکتور به صورت خودکار تولید شده و نیاز به مهر و امضا ندارد</p>
       </div>
@@ -784,6 +903,7 @@ function printSummary() {
   };
 }
 
+// تابع برای شروع مجدد ثبت‌نام
 function again() {
   // Clear all session data
   sessionStorage.removeItem("user-base");
@@ -792,6 +912,11 @@ function again() {
   sessionStorage.removeItem("uploads");
   sessionStorage.removeItem("submission-response");
   sessionStorage.removeItem("registration-complete");
+  sessionStorage.removeItem("tracking-code");
+
+  // Clear registration form data from localStorage
+  localStorage.removeItem('swim_registration_form');
+  localStorage.removeItem('selectedMajors');
 
   router.push("/");
 }
