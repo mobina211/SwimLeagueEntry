@@ -31,7 +31,7 @@
         <div class="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-blue-400/10 blur-3xl"></div>
 
         <!-- Header with logo -->
-        <div class="flex flex-col items-center mb-8">
+        <div class="flex flex-col items-center">
           <div class="flex items-center justify-center mb-6">
             <div class="relative">
               <!-- Swimming icon -->
@@ -46,19 +46,22 @@
           </div>
 
           <h1
-            class="text-3xl md:text-5xl font-extrabold mb-2 bg-linear-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
+            class="text-3xl md:text-4xl font-extrabold mb-2 bg-linear-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
             خوش آمدید
           </h1>
           <div class="w-24 h-1 bg-linear-to-r from-cyan-400 to-blue-500 rounded-full mb-6"></div>
         </div>
 
         <!-- Main title -->
-        <div class="mb-10">
-          <h1 class="text-4xl md:text-6xl font-black text-center mb-6 leading-tight">
-            <span class="bg-linear-to-r from-white via-cyan-100 to-blue-200 bg-clip-text text-transparent">
-              مسابقات استانی شنا
-            </span>
-            <span class="block text-4xl mt-2">🏊‍♂️🏊‍♀️</span>
+        <div class="">
+          <h1 class="text-4xl font-black text-center mb-6 leading-tight">
+            <div class="bg-linear-to-r from-white via-cyan-100 to-blue-200 bg-clip-text text-transparent">
+              مسابقات استانی شنای
+            </div>
+            <div class="mt-1 bg-linear-to-r from-cyan-100 via-cyan-300 to-blue-600 bg-clip-text text-transparent">
+              استخر شهید رئیسی
+            </div>
+            <span class="block text-xl mt-2 text-teal-500">مخصوص پسران</span>
           </h1>
 
           <!-- Swimming lanes design -->
@@ -73,24 +76,27 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
             <div class="flex items-center mb-4">
-              <div class="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center mr-3">
-                <span class="text-2xl">👦👧</span>
+              <div class="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center mx-3">
+                <span class="text-2xl">👦</span>
               </div>
               <h3 class="text-xl font-bold text-white">رده‌های سنی</h3>
             </div>
             <p class="text-lg text-cyan-100 font-semibold">زیر ۱۲ سال / بالای ۱۲ سال</p>
-            <p class="text-gray-300 mt-2">تقسیم‌بندی بر اساس استانداردهای فدراسیون شنا</p>
+            <p class="text-gray-300 text-sm mt-2">زیر 12 سال پنجشنبه 4 دی</p>
+            <p class="text-gray-300 text-sm">بالای 12 سال جمعه 5 دی</p>
+
           </div>
 
           <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
             <div class="flex items-center mb-4">
-              <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mr-3">
+              <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mx-3">
                 <span class="text-2xl">🏊‍♂️</span>
               </div>
               <h3 class="text-xl font-bold text-white">مکان برگزاری</h3>
             </div>
             <p class="text-lg text-cyan-100 font-semibold">استخر شهید رئیسی</p>
-            <p class="text-gray-300 mt-2">مجهز‌ترین استخر استان با استانداردهای بین‌المللی</p>
+            <p class="text-gray-300 mt-2 text-sm">قزوین _ چهارراه مدنی نبش چهارراه نوروزیان _ جنب اداره کل آموزش پرورش
+            </p>
           </div>
         </div>
 
@@ -103,7 +109,6 @@
                 <span class="text-2xl mr-2">📅</span>
                 <h4 class="text-2xl font-bold text-white">دی ماه ۱۴۰۴</h4>
               </div>
-              <p class="text-cyan-200">زمان باقی‌مانده تا شروع مسابقات</p>
             </div>
           </div>
         </div>
