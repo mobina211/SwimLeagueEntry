@@ -15,14 +15,6 @@
         `">
         📄
       </div>
-
-      <!-- Document lines pattern -->
-      <div class="absolute inset-0 opacity-5">
-        <div v-for="i in 15" :key="'line-' + i" class="absolute h-px bg-white left-4 right-4"
-          :style="`top: ${(i * 50) + Math.random() * 20}px;`">
-        </div>
-      </div>
-
       <!-- Seal/stamp effect -->
       <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full border-8 border-red-500/10 opacity-20"></div>
       <div class="absolute bottom-1/4 right-1/4 w-48 h-48 rounded-full border-8 border-blue-500/10 opacity-20"></div>
@@ -58,17 +50,6 @@
         </div>
       </div>
 
-      <!-- Progress indicator -->
-      <div class="mb-10">
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-sm text-cyan-300 font-medium">مرحله ۴ از ۵</span>
-          <span class="text-sm text-cyan-200">۸۰٪ تکمیل شده</span>
-        </div>
-        <div class="h-2 bg-white/10 rounded-full overflow-hidden">
-          <div class="h-full bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full w-4/5"></div>
-        </div>
-      </div>
-
       <!-- Main form card -->
       <div
         class="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 overflow-hidden">
@@ -76,7 +57,7 @@
         <div class="p-6 md:p-8 border-b border-white/10">
           <div class="flex items-center space-x-4 space-x-reverse">
             <div
-              class="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
+              class="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500/20 to-cyan-500/20 flex items-center justify-center mx-4">
               <span class="text-2xl">👤</span>
             </div>
             <div>
@@ -90,6 +71,32 @@
           </div>
         </div>
 
+        <!-- Requirements checklist -->
+        <div class="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-400/30 rounded-2xl p-6">
+          <h4 class="text-lg font-bold text-white mb-4 flex items-center">
+            <span class="ml-2">📋</span>
+            شرایط و نکات مهم
+          </h4>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <span class="text-green-400 ml-3 mt-1">✅</span>
+              <span class="text-cyan-100/90">تصاویر باید واضح و خوانا باشند</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-400 ml-3 mt-1">✅</span>
+              <span class="text-cyan-100/90">اعتبار بیمه ورزشی باید حداقل تا تاریخ مسابقات باشد</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-400 ml-3 mt-1">✅</span>
+              <span class="text-cyan-100/90">شناسنامه باید صفحه اول با مشخصات کامل باشد</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-red-400 ml-3 mt-1">⚠️</span>
+              <span class="text-cyan-100/90">ارسال مدارک جعلی منجر به محرومیت دائمی می‌شود</span>
+            </li>
+          </ul>
+        </div>
+
         <!-- Upload sections -->
         <div class="p-6 md:p-8 space-y-10">
           <!-- Insurance upload -->
@@ -97,7 +104,7 @@
             <div class="flex items-start justify-between mb-4">
               <div class="flex items-center space-x-3 space-x-reverse">
                 <div
-                  class="w-14 h-14 rounded-xl bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/30 flex items-center justify-center">
+                  class="w-14 h-14 rounded-xl bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/30 flex items-center justify-center mx-4">
                   <span class="text-2xl">🏥</span>
                 </div>
                 <div>
@@ -184,7 +191,7 @@
             <div class="flex items-start justify-between mb-4">
               <div class="flex items-center space-x-3 space-x-reverse">
                 <div
-                  class="w-14 h-14 rounded-xl bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-400/30 flex items-center justify-center">
+                  class="w-14 h-14 rounded-xl bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-400/30 flex items-center justify-center mx-4">
                   <span class="text-2xl">🪪</span>
                 </div>
                 <div>
@@ -221,7 +228,7 @@
                     تصویر شناسنامه با موفقیت آپلود شد
                   </p>
                   <p class="text-cyan-200/70 text-sm">
-                    حداکثر حجم: ۵ مگابایت • کیفیت: حداقل ۳۰۰DPI
+                    حداکثر حجم: ۵ مگابایت
                   </p>
                 </div>
 
@@ -265,32 +272,6 @@
             </div>
           </div>
 
-          <!-- Requirements checklist -->
-          <div class="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-400/30 rounded-2xl p-6">
-            <h4 class="text-lg font-bold text-white mb-4 flex items-center">
-              <span class="ml-2">📋</span>
-              شرایط و نکات مهم
-            </h4>
-            <ul class="space-y-3">
-              <li class="flex items-start">
-                <span class="text-green-400 ml-3 mt-1">✅</span>
-                <span class="text-cyan-100/90">تصاویر باید واضح و خوانا باشند</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-green-400 ml-3 mt-1">✅</span>
-                <span class="text-cyan-100/90">اعتبار بیمه ورزشی باید حداقل تا تاریخ مسابقات باشد</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-green-400 ml-3 mt-1">✅</span>
-                <span class="text-cyan-100/90">شناسنامه باید صفحه اول با مشخصات کامل باشد</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-red-400 ml-3 mt-1">⚠️</span>
-                <span class="text-cyan-100/90">ارسال مدارک جعلی منجر به محرومیت دائمی می‌شود</span>
-              </li>
-            </ul>
-          </div>
-
           <!-- Error message -->
           <div v-if="error" class="animate-shake p-4 bg-red-500/20 border border-red-400/30 rounded-xl">
             <div class="flex items-center text-red-300">
@@ -313,10 +294,10 @@
               <div class="flex items-center space-x-2 space-x-reverse">
                 <div class="w-6 h-2 rounded-full bg-white/30"></div>
                 <div class="w-6 h-2 rounded-full bg-white/30"></div>
-                <div class="w-6 h-2 rounded-full bg-white/30"></div>
                 <div class="w-10 h-2 rounded-full bg-cyan-500"></div>
+                <div class="w-6 h-2 rounded-full bg-white/30 mx-2"></div>
               </div>
-              <p class="text-sm mt-3">مرحله ۴ از ۵ • بارگذاری مدارک</p>
+              <p class="text-sm mt-3">مرحله ۳ از ۴ • بارگذاری مدارک</p>
             </div>
 
             <button @click="next" :disabled="!previews.insurance || !previews.idcard" :class="[
