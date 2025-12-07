@@ -277,8 +277,20 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { useRouter } from "vue-router";
+
+
+const props = defineProps({
+  step: Number
+});
+
+watch(
+  () => props.step,
+  () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+);
 
 const router = useRouter();
 const user = JSON.parse(sessionStorage.getItem("user-full") || "{}");

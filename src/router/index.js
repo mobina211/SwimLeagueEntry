@@ -19,7 +19,11 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+   scrollBehavior() {
+    // این خط تضمین می‌کند که همیشه صفحه از بالا شروع شود
+    return { top: 0 };
+  }
 });
 
 export default router;
