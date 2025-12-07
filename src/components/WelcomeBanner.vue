@@ -143,6 +143,21 @@
           </p>
         </div>
 
+
+        <div style="width: 100%; display: flex; justify-content: center; margin-top: 30px;">
+         <iframe
+         src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d546.1910970342377!2d50.009151128914965!3d36.293049182240516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1765114133093!5m2!1sen!2s"
+         width="300"
+         height="200"
+         style="border:0;"
+         allowfullscreen=""
+         loading="lazy">
+         </iframe>
+        </div>
+
+
+
+
         <!-- Decorative elements -->
         <div class="absolute -z-10 top-10 left-10 w-32 h-32 rounded-full bg-cyan-400/10 blur-xl"></div>
         <div class="absolute -z-10 bottom-10 right-10 w-40 h-40 rounded-full bg-blue-400/10 blur-xl"></div>
