@@ -10,7 +10,7 @@
         <span class="text-4xl">🏊‍♂️</span>
       </div>
       <div class="absolute top-2/3 right-10 animate-swim-fast">
-        <span class="text-4xl">🏊‍♀️</span>
+        <span class="text-4xl">🏊‍♂️</span>
       </div>
 
       <!-- Floating bubbles -->
@@ -77,7 +77,7 @@
         <p class="text-cyan-100/80 text-lg max-w-2xl mx-auto mb-2">
           با مشورت مربی شنای خود لطفا <span class="text-yellow-300 font-bold">دو رشته شنا</span> را از گزینه‌های زیر
           انتخاب کنید
-          <span class="text-cyan-300 block text-sm mt-1">یا گزینه "همه رشته‌ها" را انتخاب نمایید</span>
+
         </p>
 
         <!-- Selected majors counter -->

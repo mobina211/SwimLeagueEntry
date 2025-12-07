@@ -330,49 +330,114 @@ const uploading = ref(null);
 const stored = JSON.parse(sessionStorage.getItem("registration-step") || "{}");
 const error = ref("");
 
+// function readFile(file) {
+//   return new Promise((res, rej) => {
+//     const fr = new FileReader();
+//     fr.onload = () => res(fr.result);
+//     fr.onerror = rej;
+//     fr.readAsDataURL(file);
+//   });
+// }
 function readFile(file) {
-  return new Promise((res, rej) => {
+  return new Promise((resolve, reject) => {
     const fr = new FileReader();
-    fr.onload = () => res(fr.result);
-    fr.onerror = rej;
-    fr.readAsDataURL(file);
+
+    fr.onload = () => resolve(fr.result);
+
+    fr.onerror = () => reject(new Error("BROKEN_FILE"));
+
+    try {
+      fr.readAsDataURL(file);
+    } catch (e) {
+      reject(new Error("BROKEN_FILE"));
+    }
   });
 }
 
+
+// async function onFile(e, key) {
+//   const file = e.target.files[0];
+//   if (!file) return;
+
+//   // Check file size (5MB max)
+//   if (file.size > 5 * 1024 * 1024) {
+//     error.value = "حجم فایل باید کمتر از ۵ مگابایت باشد";
+//     return;
+//   }
+
+//   // Check file type
+//   const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'];
+//   if (!validTypes.includes(file.type)) {
+//     error.value = "فرمت فایل باید JPG، PNG یا PDF باشد";
+//     return;
+//   }
+
+//   uploading.value = key;
+//   error.value = "";
+
+//   try {
+//     const data = await readFile(file);
+//     previews[key] = data;
+
+//     // Save to sessionStorage
+//     const store = JSON.parse(sessionStorage.getItem("uploads") || "{}");
+//     store[key] = data;
+//     sessionStorage.setItem("uploads", JSON.stringify(store));
+//   } catch (err) {
+//     error.value = "خطا در خواندن فایل. لطفاً دوباره تلاش کنید";
+//   } finally {
+//     uploading.value = null;
+//   }
+// }
 async function onFile(e, key) {
   const file = e.target.files[0];
   if (!file) return;
 
-  // Check file size (5MB max)
+  // حجم
   if (file.size > 5 * 1024 * 1024) {
     error.value = "حجم فایل باید کمتر از ۵ مگابایت باشد";
     return;
   }
 
-  // Check file type
-  const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'];
+  // فرمت مجاز
+  const validTypes = ["image/jpeg", "image/png", "image/jpg", "application/pdf"];
   if (!validTypes.includes(file.type)) {
     error.value = "فرمت فایل باید JPG، PNG یا PDF باشد";
     return;
   }
 
+  // شروع آپلود
   uploading.value = key;
   error.value = "";
 
   try {
+    // خواندن فایل — اگر خراب باشد BROKEN_FILE دریافت می‌کنیم
     const data = await readFile(file);
+
+    // ذخیره پیش‌نمایش
     previews[key] = data;
 
-    // Save to sessionStorage
-    const store = JSON.parse(sessionStorage.getItem("uploads") || "{}");
-    store[key] = data;
-    sessionStorage.setItem("uploads", JSON.stringify(store));
+    // ذخیره در sessionStorage — خطای ذخیره از نوع خواندن فایل نیست
+    try {
+      const store = JSON.parse(sessionStorage.getItem("uploads") || "{}");
+      store[key] = data;
+      sessionStorage.setItem("uploads", JSON.stringify(store));
+    } catch (storageErr) {
+      console.warn("Storage error:", storageErr);
+    }
+
   } catch (err) {
-    error.value = "خطا در خواندن فایل. لطفاً دوباره تلاش کنید";
+    // فقط خطای واقعی خواندن فایل را به کاربر نمایش می‌دهیم
+    if (err.message === "BROKEN_FILE") {
+      error.value = "خطا در خواندن فایل. لطفاً دوباره تلاش کنید";
+    } else {
+      console.warn("Unhandled error:", err);
+    }
   } finally {
     uploading.value = null;
   }
 }
+
 
 function removeFile(key) {
   previews[key] = null;

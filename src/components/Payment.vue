@@ -266,7 +266,7 @@
                 <div class="mb-8">
                   <div class="text-white/80 text-sm mb-2">شماره کارت مقصد</div>
                   <div class="text-3xl font-mono font-bold text-white tracking-widest dir-ltr">
-                    6174 - 3376 - 0405 - 5028
+                    6104 - 3376 - 0405 - 5028
                   </div>
                   <p class="text-white/60 text-sm mt-2">به نام: بهزاد چشفر</p>
                 </div>

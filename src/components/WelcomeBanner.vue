@@ -61,7 +61,7 @@
             <div class="mt-1 bg-linear-to-r from-cyan-100 via-cyan-300 to-blue-600 bg-clip-text text-transparent">
               استخر شهید رئیسی
             </div>
-            <span class="block text-xl mt-2 text-teal-500">مخصوص پسران</span>
+            <span class="block text-xl mt-2 text-yellow-300">ویژه پسران  </span>
           </h1>
 
           <!-- Swimming lanes design -->
@@ -81,9 +81,9 @@
               </div>
               <h3 class="text-xl font-bold text-white">رده‌های سنی</h3>
             </div>
-            <p class="text-lg text-cyan-100 font-semibold">زیر ۱۲ سال / بالای ۱۲ سال</p>
-            <p class="text-gray-300 text-sm mt-2">زیر 12 سال پنجشنبه 4 دی</p>
-            <p class="text-gray-300 text-sm">بالای 12 سال جمعه 5 دی</p>
+            <p class="text-lg text-cyan-300 font-semibold">زیر ۱۲ سال / بالای ۱۲ سال</p>
+            <p class="text-red-500 text-sm mt-2">زیر 12 سال پنجشنبه 4 دی</p>
+            <p class="text-red-500 text-sm">بالای 12 سال جمعه 5 دی</p>
 
           </div>
 
