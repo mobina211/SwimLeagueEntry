@@ -171,7 +171,7 @@
                 </div>
                 <div class="text-right">
                   <p class="text-sm text-cyan-200">پشتیبانی تلفنی</p>
-                  <p class="font-bold text-white dir-ltr">09195486890</p>
+                  <p class="font-bold text-white dir-ltr">09382550111</p>
                 </div>
               </div>
               <div class="flex items-center">
