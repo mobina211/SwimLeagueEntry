@@ -83,35 +83,38 @@
               </div>
             </div>
 
-            <!-- کد ملی -->
-            <div class="group">
+            <!-- نام پدر -->
+
+                <div class="group">
               <label
                 class="block mb-2 text-sm font-semibold text-cyan-100 group-focus-within:text-cyan-300 transition-colors">
                 <div class="flex items-center mb-1">
-                  <span class="ml-2 text-lg">🆔</span>
-                  کد ملی
+                  <span class="ml-2 text-lg">👨</span>
+                  نام پدر
                   <span class="text-red-400 mr-1">*</span>
                 </div>
               </label>
-              <input v-model="local.nationalCode" type="text" placeholder="۱۰ رقم - مثال: ۱۲۳۴۵۶۷۸۹۰" maxlength="10"
-                @input="validateNationalCode" @blur="validateNationalCode" :class="[
-                  'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl text-white placeholder-cyan-100/50 focus:outline-none focus:ring-2 transition-all duration-300 text-left dir-ltr',
-                  errors.nationalCode
+              <input v-model="local.fatherName" type="text" placeholder="مثال: محمد رضایی" @input="validateFatherName"
+                @blur="validateFatherName" :class="[
+                  'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl text-white placeholder-cyan-100/50 focus:outline-none focus:ring-2 transition-all duration-300',
+                  errors.fatherName
                     ? 'border-red-400/70 focus:border-red-400 focus:ring-red-400/30'
-                    : local.nationalCode && !errors.nationalCode
+                    : local.fatherName && !errors.fatherName
                       ? 'border-green-400/70 focus:border-green-400 focus:ring-green-400/30'
                       : 'border-white/20 focus:border-cyan-400 focus:ring-cyan-400/30'
                 ]">
-              <div v-if="errors.nationalCode" class="mt-1 text-red-300 text-sm flex items-center animate-shake">
+              <div v-if="errors.fatherName" class="mt-1 text-red-300 text-sm flex items-center animate-shake">
                 <span class="ml-1">⚠️</span>
-                {{ errors.nationalCode }}
+                {{ errors.fatherName }}
               </div>
-              <div v-else-if="local.nationalCode && !errors.nationalCode"
+              <div v-else-if="local.fatherName && !errors.fatherName"
                 class="mt-1 text-green-300 text-sm flex items-center">
                 <span class="ml-1">✅</span>
-                کد ملی معتبر است
+                نام پدر معتبر است
               </div>
             </div>
+
+
 
             <!-- نام مربی شنا -->
             <div class="group">
@@ -175,33 +178,34 @@
 
           <!-- Column 2 -->
           <div class="space-y-6">
-            <!-- نام پدر -->
-            <div class="group">
+            <!-- کد ملی -->
+
+             <div class="group">
               <label
                 class="block mb-2 text-sm font-semibold text-cyan-100 group-focus-within:text-cyan-300 transition-colors">
                 <div class="flex items-center mb-1">
-                  <span class="ml-2 text-lg">👨</span>
-                  نام پدر
+                  <span class="ml-2 text-lg">🆔</span>
+                  کد ملی
                   <span class="text-red-400 mr-1">*</span>
                 </div>
               </label>
-              <input v-model="local.fatherName" type="text" placeholder="مثال: محمد رضایی" @input="validateFatherName"
-                @blur="validateFatherName" :class="[
-                  'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl text-white placeholder-cyan-100/50 focus:outline-none focus:ring-2 transition-all duration-300',
-                  errors.fatherName
+              <input v-model="local.nationalCode" type="text" placeholder="۱۰ رقم - مثال: ۱۲۳۴۵۶۷۸۹۰" maxlength="10"
+                @input="validateNationalCode" @blur="validateNationalCode" :class="[
+                  'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl text-white placeholder-cyan-100/50 focus:outline-none focus:ring-2 transition-all duration-300 text-left dir-ltr',
+                  errors.nationalCode
                     ? 'border-red-400/70 focus:border-red-400 focus:ring-red-400/30'
-                    : local.fatherName && !errors.fatherName
+                    : local.nationalCode && !errors.nationalCode
                       ? 'border-green-400/70 focus:border-green-400 focus:ring-green-400/30'
                       : 'border-white/20 focus:border-cyan-400 focus:ring-cyan-400/30'
                 ]">
-              <div v-if="errors.fatherName" class="mt-1 text-red-300 text-sm flex items-center animate-shake">
+              <div v-if="errors.nationalCode" class="mt-1 text-red-300 text-sm flex items-center animate-shake">
                 <span class="ml-1">⚠️</span>
-                {{ errors.fatherName }}
+                {{ errors.nationalCode }}
               </div>
-              <div v-else-if="local.fatherName && !errors.fatherName"
+              <div v-else-if="local.nationalCode && !errors.nationalCode"
                 class="mt-1 text-green-300 text-sm flex items-center">
                 <span class="ml-1">✅</span>
-                نام پدر معتبر است
+                کد ملی معتبر است
               </div>
             </div>
 
