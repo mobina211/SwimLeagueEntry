@@ -189,7 +189,7 @@
       </label>
 
       <input v-model="local.nationalCode" type="text" maxlength="10"
-        placeholder="۱۰ رقم - مثال: ۱۲۳۴۵۶۷۸۹۰"
+        placeholder=" رقم10 - مثال:  1234567890"
         @input="validateNationalCode" @blur="validateNationalCode"
         :class="[
           'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl dir-ltr text-white text-left placeholder-cyan-100/50 transition-all duration-300 focus:outline-none focus:ring-2',

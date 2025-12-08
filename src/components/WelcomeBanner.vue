@@ -56,8 +56,7 @@
         <div class="">
           <h1 class="text-4xl font-black text-center mb-6 leading-tight">
             <div class="bg-linear-to-r from-white via-cyan-100 to-blue-200 bg-clip-text text-transparent">
-              مسابقات استانی شنای
-            </div>
+مسابقات استانی شنا            </div>
             <div class="mt-1 bg-linear-to-r from-cyan-100 via-cyan-300 to-blue-600 bg-clip-text text-transparent">
               استخر شهید رئیسی
             </div>
@@ -82,8 +81,8 @@
               <h3 class="text-xl font-bold text-white">رده‌های سنی</h3>
             </div>
             <p class="text-lg text-cyan-300 font-semibold">زیر ۱۲ سال / بالای ۱۲ سال</p>
-            <p class="text-red-500 text-sm mt-2">زیر 12 سال پنجشنبه 4 دی</p>
-            <p class="text-red-500 text-sm">بالای 12 سال جمعه 5 دی</p>
+            <p class="text-yellow-500 text-sm mt-2">زیر 12 سال پنجشنبه 4 دی</p>
+            <p class="text-yellow-500 text-sm">بالای 12 سال جمعه 5 دی</p>
 
           </div>
 
