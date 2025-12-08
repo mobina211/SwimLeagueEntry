@@ -155,7 +155,10 @@
          </iframe>
         </div>
 
-
+         <div class="text-right">
+            <p class="text-sm text-cyan-200" style="display: flex; justify-content: center; margin-top: 30px;">پشتیبانی  </p>
+            <p class="font-bold text-white dir-ltr" style="display: flex; justify-content: center; margin-top: 7px;">09382550111</p>
+        </div>
 
 
         <!-- Decorative elements -->
