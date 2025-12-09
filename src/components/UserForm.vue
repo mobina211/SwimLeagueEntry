@@ -322,7 +322,7 @@
             <div
               class="h-12 w-12 rounded-full bg-gradient-to-r from-emerald-500 to-green-600 flex items-center justify-center">
               <span class="font-bold text-white">{{ Math.round((validFieldCount / totalRequiredFields) * 100)
-              }}%</span>
+                }}%</span>
             </div>
           </div>
           <div class="mt-3 h-2 bg-white/10 rounded-full overflow-hidden">
@@ -611,10 +611,10 @@ function validateBirthYear() {
     errors.birthYear = "سال تولد الزامی است";
   } else if (isNaN(year)) {
     errors.birthYear = "سال تولد باید عدد باشد";
-  } else if (year < 1370 || year > currentYear) {
-    errors.birthYear = `سال تولد باید بین ۱۳۷۰ تا ${currentYear} باشد`;
-  } else if (currentYear - year < 5) {
-    errors.birthYear = "حداقل سن شرکت ۵ سال است";
+  } else if (year < 1386 || year > currentYear - 6) {
+    errors.birthYear = `سال تولد باید بین ۱۳۸۶ تا ۱۳۹۸ باشد`;
+  } else if (currentYear - year < 6) {
+    errors.birthYear = "حداقل سن شرکت ۶ سال است";
   } else {
     errors.birthYear = "";
   }
