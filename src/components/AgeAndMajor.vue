@@ -510,8 +510,15 @@ const competitionTime = computed(() => {
 
 // Competition distance based on age
 const competitionDistance = computed(() => {
-
-  return userAge.value < 9 ? '۲۵' : '۵۰';
+  if (userAge.value < 9) {
+    return '۲۵';
+  }
+  else if (userAge.value < 13) {
+    return '۵۰';
+  }
+  else {
+    return '۵۰ و ۱۰۰';
+  }
 });
 
 // Available majors based on age
@@ -543,17 +550,23 @@ function isMajorAvailable(major) {
 
 // Toggle major selection
 function toggleMajor(major) {
-  // Toggle the major
+  const maxSelectable = userAge.value > 12 ? 3 : 2; // تعیین سقف انتخاب
+
+  // آیا رشته از قبل انتخاب شده؟
   const index = selectedMajors.value.indexOf(major);
+
   if (index > -1) {
+    // اگر انتخاب شده بود، با کلیک دوباره حذفش کن
     selectedMajors.value.splice(index, 1);
   } else {
-    // Check if we can add more (max 2 unless it's "all")
-    if (selectedMajors.value.length < 2) {
+    // اگر هنوز زیر سقف بود، اضافه‌کن
+    if (selectedMajors.value.length < maxSelectable) {
       selectedMajors.value.push(major);
     } else {
-      error.value = "حداکثر می‌توانید دو رشته انتخاب کنید. برای انتخاب بیشتر، گزینه 'همه رشته‌ها' را انتخاب کنید.";
-      setTimeout(() => error.value = "", 3000);
+      // اگر سقف پر بود، خطا بده
+      error.value =
+        `حداکثر می‌توانید ${maxSelectable} رشته انتخاب کنید.`;
+      setTimeout(() => (error.value = ""), 3000);
     }
   }
 }
@@ -580,7 +593,7 @@ function getMajorBadgeClass(major) {
 
 // Check if user can continue
 const canContinue = computed(() => {
-  return selectedMajors.value.length === 2;
+  return selectedMajors.value.length > 0;
 });
 
 onMounted(() => {
