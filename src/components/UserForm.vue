@@ -322,7 +322,7 @@
             <div
               class="h-12 w-12 rounded-full bg-gradient-to-r from-emerald-500 to-green-600 flex items-center justify-center">
               <span class="font-bold text-white">{{ Math.round((validFieldCount / totalRequiredFields) * 100)
-                }}%</span>
+              }}%</span>
             </div>
           </div>
           <div class="mt-3 h-2 bg-white/10 rounded-full overflow-hidden">
@@ -365,7 +365,6 @@
         <div class="mt-8 flex justify-center">
           <div class="flex items-center space-x-2">
             <div class="w-10 h-2 rounded-full bg-cyan-500"></div>
-            <div class="w-6 h-2 rounded-full bg-white/30"></div>
             <div class="w-6 h-2 rounded-full bg-white/30"></div>
             <div class="w-6 h-2 rounded-full bg-white/30"></div>
             <div class="w-6 h-2 rounded-full bg-white/30"></div>

@@ -74,18 +74,25 @@
           </div>
         </div>
 
-        <p class="text-cyan-100/80 text-lg max-w-2xl mx-auto mb-2">
-          با مشورت مربی شنای خود لطفا <span class="text-yellow-300 font-bold">دو رشته شنا</span> را از گزینه‌های زیر
-          انتخاب کنید
-
+        <p v-if="userAge <= 12" class="text-cyan-100/80 text-lg max-w-2xl mx-auto mb-2">
+          با مشورت مربی شنای خود لطفا <span class="text-yellow-300 font-bold">تا دو رشته شنا</span> را از گزینه‌های زیر
+          انتخاب کنید.
+        </p>
+        <p v-else class="text-cyan-100/80 text-lg max-w-2xl mx-auto mb-2">
+          با مشورت مربی شنای خود لطفا <span class="text-yellow-300 font-bold">تا سه رشته شنا</span> را از گزینه‌های زیر
+          انتخاب کنید.
         </p>
 
         <!-- Selected majors counter -->
         <div
           class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-400/30 mb-2">
-          <span class="text-cyan-300 text-sm font-medium">
+          <span v-if="userAge <= 12" class="text-cyan-300 text-sm font-medium">
             انتخاب شده: <span class="font-bold text-white">{{ selectedMajors.length.toLocaleString('fa-IR') }}</span> از
             ۲ رشته
+          </span>
+          <span v-else class="text-cyan-300 text-sm font-medium">
+            انتخاب شده: <span class="font-bold text-white">{{ selectedMajors.length.toLocaleString('fa-IR') }}</span> از
+            ۳ رشته
           </span>
         </div>
       </div>
@@ -446,7 +453,7 @@
             : 'bg-gradient-to-r from-gray-600 to-gray-700 cursor-not-allowed opacity-70'
         ]">
           <span class="flex items-center">
-            پرداخت و ادامه
+            انتخاب و ادامه
             <span class="mr-3 text-2xl transform group-hover:translate-x-2 transition-transform duration-300">📄</span>
           </span>
         </button>
@@ -458,6 +465,7 @@
           <div class="w-6 h-2 rounded-full bg-white/30"></div>
           <div class="w-10 h-2 rounded-full mx-2 bg-cyan-500"></div>
           <div class="w-6 h-2 rounded-full bg-white/30"></div>
+          <div class="w-6 h-2 rounded-full mx-2 bg-white/30"></div>
         </div>
         <p class="text-center text-cyan-200/70 text-sm mt-3">مرحله ۲ از ۴ • انتخاب رشته و ثبت نهایی</p>
       </div>
@@ -529,12 +537,11 @@ const availableMajors = computed(() => {
   if (userAge.value < 8) {
     return ['sine', 'posht'];
   }
-  // بالای ۱۲ سال: همه رشته‌ها
   else if (userAge.value < 10) {
     return ['sine', 'posht', 'ghorbaqe'];
   }
   else {
-    return ['sine', 'posht', 'ghorbaqe'];
+    return ['parvane', 'sine', 'posht', 'ghorbaqe'];
   }
 });
 

@@ -287,7 +287,7 @@
             <button @click="back"
               class="group px-8 py-4 rounded-xl border-2 border-cyan-400/50 text-cyan-300 hover:bg-cyan-500/20 hover:border-cyan-400 hover:text-white transition-all duration-300 flex items-center justify-center w-full sm:w-auto">
               <span class="ml-3 transform group-hover:-translate-x-1 transition-transform duration-300 text-xl">←</span>
-              بازگشت به مسابقات
+              بازگشت به انتخاب رشته
             </button>
 
             <div class="text-center text-cyan-200/70">
@@ -456,7 +456,7 @@ function next() {
 }
 
 function back() {
-  router.push("/races");
+  router.push("/age");
 }
 </script>
 
