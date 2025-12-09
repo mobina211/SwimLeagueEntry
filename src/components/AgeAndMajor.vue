@@ -499,12 +499,19 @@ const competitionDate = computed(() => {
 
 // Competition time based on age
 const competitionTime = computed(() => {
-  return userAge.value < 12 ? 'ساعت ۸:۰۰ تا ۱۲:۰۰ صبح' : 'ساعت ۱۴:۰۰ تا ۱۸:۰۰ بعدازظهر';
+  if (userAge.value <= 12 && userAge.value >= 10) {
+    return 'ساعت ۸:۰۰ تا ۱۱:۰۰ صبح'
+  }
+  else if (userAge.value <= 9 && userAge.value >= 6) {
+    return 'ساعت ۱۱:۰۰ تا ۱۴:۰۰ صبح'
+  }
+  return 'ساعت ۸:۰۰ تا ۱۴:۰۰ صبح';
 });
 
 // Competition distance based on age
 const competitionDistance = computed(() => {
-  return userAge.value < 12 ? '۲۵' : '۵۰';
+
+  return userAge.value < 9 ? '۲۵' : '۵۰';
 });
 
 // Available majors based on age
@@ -512,12 +519,15 @@ const availableMajors = computed(() => {
   if (!userAge.value) return [];
 
   // زیر ۱۲ سال: فقط سینه و پشت
-  if (userAge.value < 12) {
+  if (userAge.value < 8) {
     return ['sine', 'posht'];
   }
   // بالای ۱۲ سال: همه رشته‌ها
+  else if (userAge.value < 10) {
+    return ['sine', 'posht', 'ghorbaqe'];
+  }
   else {
-    return ['parvane', 'sine', 'posht', 'ghorbaqe'];
+    return ['sine', 'posht', 'ghorbaqe'];
   }
 });
 
