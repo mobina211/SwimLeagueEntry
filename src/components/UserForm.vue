@@ -53,242 +53,226 @@
 
 
         <!-- Form grid -->
-            <!-- Form grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <!-- Form grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
 
-  <!-- ---- ستون راست (Column 1) ---- -->
-  <div class="space-y-6">
+          <!-- 1. نام و نام خانوادگی -->
+          <div class="group">
+            <label
+              class="block mb-2 text-sm font-semibold text-cyan-100 group-focus-within:text-cyan-300 transition-colors">
+              <div class="flex items-center mb-1">
+                <span class="ml-2 text-lg">👤</span>
+                نام و نام خانوادگی شناگر
+                <span class="text-red-400 mr-1">*</span>
+              </div>
+            </label>
+            <input v-model="local.name" type="text" placeholder="مثال: علی رضایی" @input="validateName"
+              @blur="validateName" :class="[
+                'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl text-white placeholder-cyan-100/50 transition-all duration-300 focus:outline-none focus:ring-2',
+                errors.name
+                  ? 'border-red-400/70 focus:border-red-400 focus:ring-red-400/30'
+                  : local.name && !errors.name
+                    ? 'border-green-400/70 focus:border-green-400 focus:ring-green-400/30'
+                    : 'border-white/20 focus:border-cyan-400 focus:ring-cyan-400/30'
+              ]">
 
-    <!-- 1. نام و نام خانوادگی -->
-    <div class="group">
-      <label class="block mb-2 text-sm font-semibold text-cyan-100 group-focus-within:text-cyan-300 transition-colors">
-        <div class="flex items-center mb-1">
-          <span class="ml-2 text-lg">👤</span>
-          نام و نام خانوادگی شناگر
-          <span class="text-red-400 mr-1">*</span>
+            <div v-if="errors.name" class="mt-1 text-red-300 text-sm flex items-center animate-shake">
+              <span class="ml-1">⚠️</span>{{ errors.name }}
+            </div>
+            <div v-else-if="local.name && !errors.name" class="mt-1 text-green-300 text-sm flex items-center">
+              <span class="ml-1">✅</span> نام وارد شده معتبر است
+            </div>
+          </div>
+
+          <!-- 2. کد ملی -->
+          <div class="group">
+            <label class="block mb-2 text-sm font-semibold text-cyan-100">
+              <div class="flex items-center mb-1">
+                <span class="ml-2 text-lg">🆔</span>
+                کد ملی
+                <span class="text-red-400 mr-1">*</span>
+              </div>
+            </label>
+
+            <input v-model="local.nationalCode" type="text" maxlength="10" placeholder=" رقم10 - مثال:  1234567890"
+              @input="validateNationalCode" @blur="validateNationalCode" :class="[
+                'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl dir-ltr text-white text-left placeholder-cyan-100/50 transition-all duration-300 focus:outline-none focus:ring-2',
+                errors.nationalCode
+                  ? 'border-red-400/70 focus:border-red-400 focus:ring-red-400/30'
+                  : local.nationalCode && !errors.nationalCode
+                    ? 'border-green-400/70 focus:border-green-400 focus:ring-green-400/30'
+                    : 'border-white/20 focus:border-cyan-400 focus:ring-cyan-400/30'
+              ]">
+
+            <div v-if="errors.nationalCode" class="mt-1 text-red-300 text-sm flex items-center animate-shake">
+              <span class="ml-1">⚠️</span>{{ errors.nationalCode }}
+            </div>
+            <div v-else-if="local.nationalCode && !errors.nationalCode"
+              class="mt-1 text-green-300 text-sm flex items-center">
+              <span class="ml-1">✅</span> کد ملی معتبر است
+            </div>
+          </div>
+
+          <!-- 3. نام پدر -->
+          <div class="group">
+            <label class="block mb-2 text-sm font-semibold text-cyan-100">
+              <div class="flex items-center mb-1">
+                <span class="ml-2 text-lg">👨</span>
+                نام پدر
+                <span class="text-red-400 mr-1">*</span>
+              </div>
+            </label>
+            <input v-model="local.fatherName" type="text" placeholder="مثال: محمد" @input="validateFatherName"
+              @blur="validateFatherName" :class="[
+                'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl text-white placeholder-cyan-100/50 transition-all duration-300 focus:outline-none focus:ring-2',
+                errors.fatherName
+                  ? 'border-red-400/70 focus:border-red-400 focus:ring-red-400/30'
+                  : local.fatherName && !errors.fatherName
+                    ? 'border-green-400/70 focus:border-green-400 focus:ring-green-400/30'
+                    : 'border-white/20 focus:border-cyan-400 focus:ring-cyan-400/30'
+              ]">
+            <div v-if="errors.fatherName" class="mt-1 text-red-300 text-sm flex items-center animate-shake">
+              <span class="ml-1">⚠️</span>{{ errors.fatherName }}
+            </div>
+            <div v-else-if="local.fatherName && !errors.fatherName"
+              class="mt-1 text-green-300 text-sm flex items-center">
+              <span class="ml-1">✅</span> نام پدر معتبر است
+            </div>
+          </div>
+
+          <!-- 4. نام مدرسه تحصیلی -->
+          <div class="group">
+            <label class="block mb-2 text-sm font-semibold text-cyan-100">
+              <div class="flex items-center mb-1">
+                <span class="ml-2 text-lg">🏫</span>
+                نام مدرسه درحال تحصیل
+                <span class="text-red-400 mr-1">*</span>
+              </div>
+            </label>
+
+            <input v-model="local.schoolName" type="text" placeholder="نام مدرسه تحصیلی" @input="validateSchoolName"
+              @blur="validateSchoolName" :class="[
+                'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl text-white placeholder-cyan-100/50 transition-all duration-300 focus:outline-none focus:ring-2',
+                errors.schoolName
+                  ? 'border-red-400/70 focus:border-red-400 focus:ring-red-400/30'
+                  : local.schoolName && !errors.schoolName
+                    ? 'border-green-400/70 focus:border-green-400 focus:ring-green-400/30'
+                    : 'border-white/20 focus:border-cyan-400 focus:ring-cyan-400/30'
+              ]">
+
+            <div v-if="errors.schoolName" class="mt-1 text-red-300 text-sm flex items-center animate-shake">
+              <span class="ml-1">⚠️</span>{{ errors.schoolName }}
+            </div>
+            <div v-else-if="local.schoolName && !errors.schoolName"
+              class="mt-1 text-green-300 text-sm flex items-center">
+              <span class="ml-1">✅</span> نام مدرسه معتبر است
+            </div>
+          </div>
+
+          <!-- 5. نام مربی شنا -->
+          <div class="group">
+            <label class="block mb-2 text-sm font-semibold text-cyan-100">
+              <div class="flex items-center mb-1">
+                <span class="ml-2 text-lg">👨‍🏫</span>
+                نام مربی شنا
+                <span class="text-red-400 mr-1">*</span>
+              </div>
+            </label>
+
+            <input v-model="local.coachName" type="text" placeholder="نام مربی رسمی" @input="validateCoachName"
+              @blur="validateCoachName" :class="[
+                'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl text-white placeholder-cyan-100/50 transition-all duration-300 focus:outline-none focus:ring-2',
+                errors.coachName
+                  ? 'border-red-400/70 focus:border-red-400 focus:ring-red-400/30'
+                  : local.coachName && !errors.coachName
+                    ? 'border-green-400/70 focus:border-green-400 focus:ring-green-400/30'
+                    : 'border-white/20 focus:border-cyan-400 focus:ring-cyan-400/30'
+              ]">
+
+            <div v-if="errors.coachName" class="mt-1 text-red-300 text-sm flex items-center animate-shake">
+              <span class="ml-1">⚠️</span>{{ errors.coachName }}
+            </div>
+            <div v-else-if="local.coachName && !errors.coachName" class="mt-1 text-green-300 text-sm flex items-center">
+              <span class="ml-1">✅</span> نام مربی معتبر است
+            </div>
+          </div>
+
+          <!-- 6. نام باشگاه شنا -->
+          <div class="group">
+            <label class="block mb-2 text-sm font-semibold text-cyan-100">
+              <div class="flex items-center mb-1">
+                <span class="ml-2 text-lg">🏊</span>
+                نام مدرسه شنا
+                <span class="text-gray-400 mr-1 text-xs">(اختیاری)</span>
+              </div>
+            </label>
+
+            <input v-model="local.swimSchoolName" type="text" placeholder="در صورت وجود (اختیاری)"
+              class="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-cyan-100/50 transition-all duration-300 mb-6">
+          </div>
+
+          <!-- 7. شماره تماس -->
+          <div class="group">
+            <label class="block mb-2 text-sm font-semibold text-cyan-100">
+              <div class="flex items-center mb-1">
+                <span class="ml-2 text-lg">📱</span>
+                شماره تماس اولیا
+                <span class="text-red-400 mr-1">*</span>
+              </div>
+            </label>
+
+            <input v-model="local.phone" type="tel" maxlength="11" placeholder="۰۹۱۲۳۴۵۶۷۸۹" @input="validatePhone"
+              @blur="validatePhone" :class="[
+                'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl text-white text-left dir-ltr placeholder-cyan-100/50 transition-all duration-300 focus:outline-none focus:ring-2',
+                errors.phone
+                  ? 'border-red-400/70 focus:border-red-400 focus:ring-red-400/30'
+                  : local.phone && !errors.phone
+                    ? 'border-green-400/70 focus:border-green-400 focus:ring-green-400/30'
+                    : 'border-white/20 focus:border-cyan-400 focus:ring-cyan-400/30'
+              ]">
+
+            <div v-if="errors.phone" class="mt-1 text-red-300 text-sm flex items-center animate-shake">
+              <span class="ml-1">⚠️</span>{{ errors.phone }}
+            </div>
+            <div v-else-if="local.phone && !errors.phone" class="mt-1 text-green-300 text-sm flex items-center">
+              <span class="ml-1">✅</span> شماره تماس معتبر است
+            </div>
+          </div>
+
+          <!-- 8. سال تولد -->
+          <div class="group">
+            <label class="block mb-2 text-sm font-semibold text-cyan-100">
+              <div class="flex items-center mb-1">
+                <span class="ml-2 text-lg">🎂</span>
+                تاریخ تولد شناگر(فقط سال)
+                <span class="text-red-400 mr-1">*</span>
+              </div>
+            </label>
+
+            <div class="relative">
+              <input v-model="local.birthYear" type="number" placeholder="مثال: ۱۳۹۵" min="1386" max="1398"
+                @input="validateBirthYear" @blur="validateBirthYear" :class="[
+                  'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl dir-ltr pl-10 text-white placeholder-cyan-100/50 transition-all duration-300 focus:outline-none focus:ring-2',
+                  errors.birthYear
+                    ? 'border-red-400/70 focus:border-red-400 focus:ring-red-400/30'
+                    : local.birthYear && !errors.birthYear
+                      ? 'border-green-400/70 focus:border-green-400 focus:ring-green-400/30'
+                      : 'border-white/20 focus:border-cyan-400 focus:ring-cyan-400/30'
+                ]">
+              <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-cyan-200/60">
+                <span class="text-sm">۱۳</span>
+              </div>
+            </div>
+
+            <div v-if="errors.birthYear" class="mt-1 text-red-300 text-sm flex items-center animate-shake">
+              <span class="ml-1">⚠️</span>{{ errors.birthYear }}
+            </div>
+            <div v-else-if="local.birthYear && !errors.birthYear" class="mt-1 text-green-300 text-sm flex items-center">
+              <span class="ml-1">✅</span> سال تولد معتبر است
+            </div>
+          </div>
+
         </div>
-      </label>
-      <input v-model="local.name" type="text" placeholder="مثال: علی رضایی"
-        @input="validateName" @blur="validateName"
-        :class="[
-          'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl text-white placeholder-cyan-100/50 transition-all duration-300 focus:outline-none focus:ring-2',
-          errors.name
-            ? 'border-red-400/70 focus:border-red-400 focus:ring-red-400/30'
-            : local.name && !errors.name
-              ? 'border-green-400/70 focus:border-green-400 focus:ring-green-400/30'
-              : 'border-white/20 focus:border-cyan-400 focus:ring-cyan-400/30'
-        ]">
-
-      <div v-if="errors.name" class="mt-1 text-red-300 text-sm flex items-center animate-shake">
-        <span class="ml-1">⚠️</span>{{ errors.name }}
-      </div>
-      <div v-else-if="local.name && !errors.name" class="mt-1 text-green-300 text-sm flex items-center">
-        <span class="ml-1">✅</span> نام وارد شده معتبر است
-      </div>
-    </div>
-
-    <!-- 3. نام پدر -->
-    <div class="group">
-      <label class="block mb-2 text-sm font-semibold text-cyan-100">
-        <div class="flex items-center mb-1">
-          <span class="ml-2 text-lg">👨</span>
-          نام پدر
-          <span class="text-red-400 mr-1">*</span>
-        </div>
-      </label>
-      <input v-model="local.fatherName" type="text" placeholder="مثال: محمد"
-        @input="validateFatherName" @blur="validateFatherName"
-        :class="[
-          'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl text-white placeholder-cyan-100/50 transition-all duration-300 focus:outline-none focus:ring-2',
-          errors.fatherName
-            ? 'border-red-400/70 focus:border-red-400 focus:ring-red-400/30'
-            : local.fatherName && !errors.fatherName
-              ? 'border-green-400/70 focus:border-green-400 focus:ring-green-400/30'
-              : 'border-white/20 focus:border-cyan-400 focus:ring-cyan-400/30'
-        ]">
-      <div v-if="errors.fatherName" class="mt-1 text-red-300 text-sm flex items-center animate-shake">
-        <span class="ml-1">⚠️</span>{{ errors.fatherName }}
-      </div>
-      <div v-else-if="local.fatherName && !errors.fatherName" class="mt-1 text-green-300 text-sm flex items-center">
-        <span class="ml-1">✅</span> نام پدر معتبر است
-      </div>
-    </div>
-
-    <!-- 5. نام مربی شنا -->
-    <div class="group">
-      <label class="block mb-2 text-sm font-semibold text-cyan-100">
-        <div class="flex items-center mb-1">
-          <span class="ml-2 text-lg">👨‍🏫</span>
-          نام مربی شنا
-          <span class="text-red-400 mr-1">*</span>
-        </div>
-      </label>
-
-      <input v-model="local.coachName" type="text" placeholder="نام مربی رسمی"
-        @input="validateCoachName" @blur="validateCoachName"
-        :class="[
-          'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl text-white placeholder-cyan-100/50 transition-all duration-300 focus:outline-none focus:ring-2',
-          errors.coachName
-            ? 'border-red-400/70 focus:border-red-400 focus:ring-red-400/30'
-            : local.coachName && !errors.coachName
-              ? 'border-green-400/70 focus:border-green-400 focus:ring-green-400/30'
-              : 'border-white/20 focus:border-cyan-400 focus:ring-cyan-400/30'
-        ]">
-
-      <div v-if="errors.coachName" class="mt-1 text-red-300 text-sm flex items-center animate-shake">
-        <span class="ml-1">⚠️</span>{{ errors.coachName }}
-      </div>
-      <div v-else-if="local.coachName && !errors.coachName" class="mt-1 text-green-300 text-sm flex items-center">
-        <span class="ml-1">✅</span> نام مربی معتبر است
-      </div>
-    </div>
-
-    <!-- 7. شماره تماس -->
-    <div class="group">
-      <label class="block mb-2 text-sm font-semibold text-cyan-100">
-        <div class="flex items-center mb-1">
-          <span class="ml-2 text-lg">📱</span>
-          شماره تماس اولیا
-          <span class="text-red-400 mr-1">*</span>
-        </div>
-      </label>
-
-      <input v-model="local.phone" type="tel" maxlength="11"
-        placeholder="۰۹۱۲۳۴۵۶۷۸۹"
-        @input="validatePhone" @blur="validatePhone"
-        :class="[
-          'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl text-white text-left dir-ltr placeholder-cyan-100/50 transition-all duration-300 focus:outline-none focus:ring-2',
-          errors.phone
-            ? 'border-red-400/70 focus:border-red-400 focus:ring-red-400/30'
-            : local.phone && !errors.phone
-              ? 'border-green-400/70 focus:border-green-400 focus:ring-green-400/30'
-              : 'border-white/20 focus:border-cyan-400 focus:ring-cyan-400/30'
-        ]">
-
-      <div v-if="errors.phone" class="mt-1 text-red-300 text-sm flex items-center animate-shake">
-        <span class="ml-1">⚠️</span>{{ errors.phone }}
-      </div>
-      <div v-else-if="local.phone && !errors.phone" class="mt-1 text-green-300 text-sm flex items-center">
-        <span class="ml-1">✅</span> شماره تماس معتبر است
-      </div>
-    </div>
-
-  </div>
-
-  <!-- ---- ستون چپ (Column 2) ---- -->
-  <div class="space-y-6">
-
-    <!-- 2. کد ملی -->
-    <div class="group">
-      <label class="block mb-2 text-sm font-semibold text-cyan-100">
-        <div class="flex items-center mb-1">
-          <span class="ml-2 text-lg">🆔</span>
-          کد ملی
-          <span class="text-red-400 mr-1">*</span>
-        </div>
-      </label>
-
-      <input v-model="local.nationalCode" type="text" maxlength="10"
-        placeholder=" رقم10 - مثال:  1234567890"
-        @input="validateNationalCode" @blur="validateNationalCode"
-        :class="[
-          'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl dir-ltr text-white text-left placeholder-cyan-100/50 transition-all duration-300 focus:outline-none focus:ring-2',
-          errors.nationalCode
-            ? 'border-red-400/70 focus:border-red-400 focus:ring-red-400/30'
-            : local.nationalCode && !errors.nationalCode
-              ? 'border-green-400/70 focus:border-green-400 focus:ring-green-400/30'
-              : 'border-white/20 focus:border-cyan-400 focus:ring-cyan-400/30'
-        ]">
-
-      <div v-if="errors.nationalCode" class="mt-1 text-red-300 text-sm flex items-center animate-shake">
-        <span class="ml-1">⚠️</span>{{ errors.nationalCode }}
-      </div>
-      <div v-else-if="local.nationalCode && !errors.nationalCode" class="mt-1 text-green-300 text-sm flex items-center">
-        <span class="ml-1">✅</span> کد ملی معتبر است
-      </div>
-    </div>
-
-    <!-- 4. نام مدرسه تحصیلی -->
-    <div class="group">
-      <label class="block mb-2 text-sm font-semibold text-cyan-100">
-        <div class="flex items-center mb-1">
-          <span class="ml-2 text-lg">🏫</span>
-          نام مدرسه تحصیلی
-          <span class="text-red-400 mr-1">*</span>
-        </div>
-      </label>
-
-      <input v-model="local.schoolName" type="text" placeholder="نام مدرسه تحصیلی"
-        @input="validateSchoolName" @blur="validateSchoolName"
-        :class="[
-          'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl text-white placeholder-cyan-100/50 transition-all duration-300 focus:outline-none focus:ring-2',
-          errors.schoolName
-            ? 'border-red-400/70 focus:border-red-400 focus:ring-red-400/30'
-            : local.schoolName && !errors.schoolName
-              ? 'border-green-400/70 focus:border-green-400 focus:ring-green-400/30'
-              : 'border-white/20 focus:border-cyan-400 focus:ring-cyan-400/30'
-        ]">
-
-      <div v-if="errors.schoolName" class="mt-1 text-red-300 text-sm flex items-center animate-shake">
-        <span class="ml-1">⚠️</span>{{ errors.schoolName }}
-      </div>
-      <div v-else-if="local.schoolName && !errors.schoolName" class="mt-1 text-green-300 text-sm flex items-center">
-        <span class="ml-1">✅</span> نام مدرسه معتبر است
-      </div>
-    </div>
-
-    <!-- 6. نام باشگاه شنا -->
-    <div class="group">
-      <label class="block mb-2 text-sm font-semibold text-cyan-100">
-        <div class="flex items-center mb-1">
-          <span class="ml-2 text-lg">🏊</span>
-          نام مدرسه/باشگاه شنا
-          <span class="text-gray-400 mr-1 text-xs">(اختیاری)</span>
-        </div>
-      </label>
-
-      <input v-model="local.swimSchoolName" type="text" placeholder="در صورت وجود (اختیاری)"
-        class="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-cyan-100/50 transition-all duration-300 mb-6">
-    </div>
-
-    <!-- 8. سال تولد -->
-    <div class="group">
-      <label class="block mb-2 text-sm font-semibold text-cyan-100">
-        <div class="flex items-center mb-1">
-          <span class="ml-2 text-lg">🎂</span>
-          سال تولد فرزند
-          <span class="text-red-400 mr-1">*</span>
-        </div>
-      </label>
-
-      <div class="relative">
-        <input v-model="local.birthYear" type="number"
-          placeholder="مثال: ۱۳۹۵" min="1370" max="1404"
-          @input="validateBirthYear" @blur="validateBirthYear"
-          :class="[
-            'w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-xl dir-ltr pl-10 text-white placeholder-cyan-100/50 transition-all duration-300 focus:outline-none focus:ring-2',
-            errors.birthYear
-              ? 'border-red-400/70 focus:border-red-400 focus:ring-red-400/30'
-              : local.birthYear && !errors.birthYear
-                ? 'border-green-400/70 focus:border-green-400 focus:ring-green-400/30'
-                : 'border-white/20 focus:border-cyan-400 focus:ring-cyan-400/30'
-          ]">
-        <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-cyan-200/60">
-          <span class="text-sm">۱۳</span>
-        </div>
-      </div>
-
-      <div v-if="errors.birthYear" class="mt-1 text-red-300 text-sm flex items-center animate-shake">
-        <span class="ml-1">⚠️</span>{{ errors.birthYear }}
-      </div>
-      <div v-else-if="local.birthYear && !errors.birthYear" class="mt-1 text-green-300 text-sm flex items-center">
-        <span class="ml-1">✅</span> سال تولد معتبر است
-      </div>
-    </div>
-
-  </div>
-
-</div>
 
 
         <!-- نمایش رده سنی به صورت بزرگتر -->
@@ -303,15 +287,15 @@
                 </span>
                 <div class="text-right mx-4">
                   <p class="text-sm text-cyan-200">تاریخ مسابقه</p>
-                  <p class="font-bold text-white text-lg">{{ age < 12 ? '۴ دی ۱۴۰۴' : '۵ دی ۱۴۰۴' }}</p>
+                  <p class="font-bold text-white text-sm">{{ age < 12 ? '۴ دی ۱۴۰۴' : '۵ دی ۱۴۰۴' }}</p>
                 </div>
                 <div class="text-right mx-4">
                   <p class="text-sm text-cyan-200">روز هفته</p>
-                  <p class="font-bold text-white text-lg">{{ age < 12 ? 'پنجشنبه' : 'جمعه' }}</p>
+                  <p class="font-bold text-white text-sm">{{ age < 12 ? 'پنجشنبه' : 'جمعه' }}</p>
                 </div>
-                <div class="flex items-center justify-between mx-4">
-                  <span class="text-sm text-cyan-300">سن شناگر:</span>
-                  <span class="font-bold text-white">{{ age }} سال</span>
+                <div class="text-right mx-4">
+                  <p class="text-sm text-cyan-300">سن شناگر:</p>
+                  <p class="font-bold text-white text-sm">{{ age }} سال</p>
                 </div>
               </div>
             </div>
@@ -325,7 +309,7 @@
           <div class="flex items-center justify-between">
             <div class="flex items-center">
               <div
-                class="w-10 h-10 rounded-full bg-gradient-to-r from-emerald-500 to-green-600 flex items-center justify-center mr-3">
+                class="w-10 h-10 rounded-full bg-gradient-to-r from-emerald-500 to-green-600 flex items-center justify-center mx-3">
                 <span class="text-lg">📊</span>
               </div>
               <div>
@@ -338,7 +322,7 @@
             <div
               class="h-12 w-12 rounded-full bg-gradient-to-r from-emerald-500 to-green-600 flex items-center justify-center">
               <span class="font-bold text-white">{{ Math.round((validFieldCount / totalRequiredFields) * 100)
-                }}%</span>
+              }}%</span>
             </div>
           </div>
           <div class="mt-3 h-2 bg-white/10 rounded-full overflow-hidden">
@@ -394,7 +378,7 @@
 
 <script setup>
 import { reactive, ref, computed, watch, onMounted } from "vue";
-import { useRouter} from "vue-router";
+import { useRouter } from "vue-router";
 
 
 
@@ -566,9 +550,12 @@ function validateFatherName() {
 function validateNationalCode() {
   const code = local.nationalCode.trim();
   const nationalCodeRegex = /^\d{10}$/;
+  const hasPersianDigits = /[\u06F0-\u06F9\u0660-\u0669]/.test(code);
 
   if (!code) {
     errors.nationalCode = "کد ملی الزامی است";
+  } else if (hasPersianDigits) {
+    errors.nationalCode = "لطفاً فقط اعداد انگلیسی وارد کنید";
   } else if (!nationalCodeRegex.test(code)) {
     errors.nationalCode = "کد ملی باید ۱۰ رقم باشد";
   } else {
@@ -586,6 +573,7 @@ function validateNationalCode() {
       errors.nationalCode = "";
     }
   }
+
   generalError.value = "";
   saveToLocalStorage();
 }
