@@ -124,31 +124,6 @@
                   </div>
                 </div>
               </div>
-
-              <!-- Selected majors details -->
-              <div class="mt-4">
-                <h3 class="text-lg font-bold text-white mb-3">جزئیات رشته‌های انتخابی:</h3>
-                <div class="space-y-3">
-                  <div v-for="(major, index) in selectedMajors" :key="index"
-                    class="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-white/5 to-white/10">
-                    <div class="flex items-center">
-                      <div class="w-10 h-10 rounded-lg flex items-center justify-center ml-3"
-                        :class="getMajorBadgeClass(major)">
-                        <span class="text-lg">{{ getMajorIcon(major) }}</span>
-                      </div>
-                      <div>
-                        <p class="font-medium text-white">{{ getMajorTitle(major) }}</p>
-                        <p class="text-xs text-cyan-200/70">{{ getMajorDescriptionShort(major) }}</p>
-                      </div>
-                    </div>
-                    <div class="text-right flex">
-                      <p class="text-md text-cyan-200 mx-4">متراژ</p>
-                      <p class="text-white">{{ competitionDistance.toLocaleString('fa-IR') }}</p>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -236,6 +211,21 @@
             </div>
           </div>
 
+          <!-- Payment steps -->
+          <div class="my-8 gap-4">
+            <div class="text-center p-4 rounded-xl bg-gradient-to-br from-white/5 to-white/10border border-white/10">
+              <div
+                class="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 flex items-center justify-center mx-auto mb-3">
+                <span class="text-xl">🔒</span>
+              </div>
+              <h4 class="font-bold text-white mb-2">توضیحات</h4>
+              <p class="text-sm text-cyan-200/80">لطفاً مبلغ موردنظر را به شماره کارت اعلام‌شده واریز کرده و تصویر رسید
+                یا فیش واریزی را در همین بخش بارگذاری کنید.
+                پس از بررسی و تأیید پرداخت، دسترسی شما به خدمات فعال خواهد شد.
+              </p>
+            </div>
+          </div>
+
           <!-- Bank card section -->
           <div class="mb-10">
             <h3 class="text-xl font-bold text-white mb-6 flex items-center">
@@ -259,16 +249,40 @@
               <!-- Card content -->
               <div class="relative z-10 p-8">
                 <div class="flex items-center justify-between mb-8">
-                  <div class="flex items-center">
-                  </div>
+                  <div class="flex items-center"></div>
                 </div>
 
                 <div class="mb-8">
-                  <div class="text-white/80 text-sm mb-2">شماره کارت مقصد</div>
-                  <div class="text-3xl font-mono font-bold text-white tracking-widest dir-ltr">
-                    6104 - 3376 - 0405 - 5028
+                  <div class="text-white/80 text-sm mb-2 flex items-center justify-between">
+                    <span>شماره کارت مقصد</span>
+                    <button @click="copyCardNumber"
+                      class="text-xs bg-white/20 hover:bg-white/30 text-white px-3 py-1 rounded-lg transition-colors duration-300 flex items-center gap-1">
+                      <span>📋</span>
+                      کپی شماره کارت
+                    </button>
                   </div>
-                  <p class="text-white/60 text-sm mt-2">به نام: بهزاد چشفر</p>
+                  <div @click="copyCardNumber" class="cursor-pointer group">
+                    <div
+                      class="text-3xl font-mono font-bold text-white tracking-widest dir-ltr transition-all duration-300 group-hover:text-cyan-200">
+                      6104 - 3376 - 0405 - 5028
+                    </div>
+                    <div class="text-white/60 text-sm mt-2">به نام: بهزاد چشفر</div>
+
+                    <!-- Tooltip -->
+                    <div
+                      class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                      برای کپی کردن کلیک کنید
+                      <div
+                        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 rotate-45 w-2 h-2 bg-gray-800">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Copy success message -->
+                  <div v-if="showCopySuccess" class="mt-3 text-green-300 text-sm flex items-center animate-fade-in">
+                    <span class="ml-1">✅</span>
+                    شماره کارت با موفقیت کپی شد: <span class="font-mono mr-2">6104337604055028</span>
+                  </div>
                 </div>
               </div>
 
@@ -282,34 +296,6 @@
               <div
                 class="absolute top-4 right-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full">
                 مبلغ: {{ totalFee.toLocaleString('fa-IR') }}
-              </div>
-            </div>
-
-            <!-- Payment steps -->
-            <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div class="text-center p-4 rounded-xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10">
-                <div
-                  class="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 flex items-center justify-center mx-auto mb-3">
-                  <span class="text-xl">1️⃣</span>
-                </div>
-                <h4 class="font-bold text-white mb-2">انتقال مبلغ</h4>
-                <p class="text-sm text-cyan-200/80">مبلغ {{ totalFee.toLocaleString('fa-IR') }} تومان را واریز کنید</p>
-              </div>
-              <div class="text-center p-4 rounded-xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10">
-                <div
-                  class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 flex items-center justify-center mx-auto mb-3">
-                  <span class="text-xl">2️⃣</span>
-                </div>
-                <h4 class="font-bold text-white mb-2">ثبت رسید</h4>
-                <p class="text-sm text-cyan-200/80">عکس رسید بانکی را آپلود کنید</p>
-              </div>
-              <div class="text-center p-4 rounded-xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10">
-                <div
-                  class="w-12 h-12 rounded-full bg-gradient-to-r from-emerald-500/20 to-green-500/20 flex items-center justify-center mx-auto mb-3">
-                  <span class="text-xl">3️⃣</span>
-                </div>
-                <h4 class="font-bold text-white mb-2">تکمیل ثبت‌نام</h4>
-                <p class="text-sm text-cyan-200/80">در انتظار تأیید نهایی</p>
               </div>
             </div>
           </div>
@@ -515,6 +501,37 @@ onMounted(() => {
   }
 });
 
+// در قسمت setup کامپوننت
+const showCopySuccess = ref(false);
+
+// تابع کپی کردن شماره کارت
+function copyCardNumber() {
+  const cardNumber = '6104337604055028'; // شماره کارت بدون خط تیره
+
+  navigator.clipboard.writeText(cardNumber)
+    .then(() => {
+      showCopySuccess.value = true;
+      setTimeout(() => {
+        showCopySuccess.value = false;
+      }, 3000); // پیام به مدت 3 ثانیه نمایش داده می‌شود
+    })
+    .catch(err => {
+      console.error('خطا در کپی کردن شماره کارت:', err);
+      // روش fallback برای مرورگرهای قدیمی
+      const textArea = document.createElement('textarea');
+      textArea.value = cardNumber;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+
+      showCopySuccess.value = true;
+      setTimeout(() => {
+        showCopySuccess.value = false;
+      }, 3000);
+    });
+}
+
 // Computed properties
 const perMajorFee = computed(() => {
   return userData.value.registrationDetails?.perMajorFee || 350000;
@@ -532,6 +549,7 @@ const displayMajor = computed(() => {
   return selectedMajors.value.map(major => getMajorTitle(major)).join(' و ');
 });
 
+// Competition date based on age
 const competitionDate = computed(() => {
   return userData.value.age < 12 ? '۴ دی ۱۴۰۴' : '۵ دی ۱۴۰۴';
 });
@@ -540,13 +558,30 @@ const competitionDay = computed(() => {
   return userData.value.age < 12 ? 'پنجشنبه' : 'جمعه';
 });
 
+// Competition time based on age
 const competitionTime = computed(() => {
-  return userData.value.age < 12 ? '۸:۰۰ تا ۱۲:۰۰' : '۱۴:۰۰ تا ۱۸:۰۰';
+  if (userData.value.age <= 12 && userData.value.age >= 10) {
+    return 'ساعت ۸:۰۰ تا ۱۱:۰۰ صبح'
+  }
+  else if (userData.value.age <= 9 && userData.value.age >= 6) {
+    return 'ساعت ۱۱:۰۰ تا ۱۴:۰۰ صبح'
+  }
+  return 'ساعت ۸:۰۰ تا ۱۴:۰۰ صبح';
 });
 
+// Competition distance based on age
 const competitionDistance = computed(() => {
-  return userData.value.age < 12 ? '۲۵' : '۵۰';
+  if (userData.value.age < 9) {
+    return '۲۵';
+  }
+  else if (userData.value.age < 13) {
+    return '۵۰';
+  }
+  else {
+    return '۵۰ و ۱۰۰';
+  }
 });
+
 
 // Helper functions
 function getMajorIcon(major) {
