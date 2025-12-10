@@ -679,6 +679,28 @@ function back() {
 }
 
 async function finalize() {
+  //  بررسی و تولید کد رهگیری اگر موجود نباشد
+  let trackingCode = sessionStorage.getItem("tracking-code");
+  if (!trackingCode) {
+    // تابع تولید مشابه RegistrationDone
+    const nationalCode = userData.value.nationalCode || 'UNKNOWN';
+    let hash = 0;
+    const inputString = nationalCode + Date.now().toString();
+    for (let i = 0; i < inputString.length; i++) {
+      hash = (hash << 5) - hash + inputString.charCodeAt(i);
+      hash |= 0;
+    }
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    trackingCode = 'SWIM-';
+    for (let i = 0; i < 8; i++) {
+      trackingCode += chars[Math.abs((hash >> (i * 4)) % chars.length)];
+    }
+
+    // ذخیره در sessionStorage و localStorage
+    sessionStorage.setItem("tracking-code", trackingCode);
+    localStorage.setItem('tracking-code-' + nationalCode, trackingCode);
+  }
+
   const uploads = JSON.parse(sessionStorage.getItem("uploads") || "{}");
   if (!uploads.receipt) {
     error.value = "لطفاً عکس رسید بانکی را آپلود کنید";
@@ -691,6 +713,7 @@ async function finalize() {
   // Build final payload
   const finalPayload = {
     timestamp: new Date().toISOString(),
+    trackingCode: trackingCode,   //  ارسال به شیت
     personal: userData.value,
     registration: {
       majors: selectedMajors.value,
@@ -706,6 +729,7 @@ async function finalize() {
     },
     uploads: uploads
   };
+
 
   try {
     const res = await fetch(SHEET_ENDPOINT, {
