@@ -1,2 +1,2 @@
 
-export const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbw1DSEypM3yXpYz5EuGzrkilodoKfGGjVSeYYf5QKfG1K8R3VkC23PJNIaQTlZycwzl/exec";
+export const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbzOdfEOAaAXtWsfI5Z-OpLZn7ilyaukrwXtnNhBOBYHNCrzhn4RHC2to0Ged5hgStN6jg/exec";
