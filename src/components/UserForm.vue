@@ -277,7 +277,7 @@
 
         <!-- نمایش رده سنی به صورت بزرگتر -->
         <div v-if="age && !errors.birthYear" class="mt-8 p-6 rounded-2xl border"
-          :class="age < 12 ? 'bg-gradient-to-r from-yellow-500/30 to-orange-500/30 border-yellow-400/50' : 'bg-gradient-to-r from-blue-500/30 to-cyan-500/30 border-cyan-400/50'">
+          :class="age < 13 ? 'bg-gradient-to-r from-yellow-500/30 to-orange-500/30 border-yellow-400/50' : 'bg-gradient-to-r from-blue-500/30 to-cyan-500/30 border-cyan-400/50'">
           <div class="flex items-center justify-between">
             <div>
               <h4 class="font-bold text-white text-xl mb-2">رده سنی تشخیص داده شده:</h4>
@@ -299,7 +299,7 @@
                 </div>
               </div>
             </div>
-            <span class="text-4xl">{{ age < 12 ? '👦' : '👨' }}</span>
+            <span class="text-4xl">{{ age < 13 ? '👦' : '👨' }}</span>
           </div>
         </div>
 
@@ -322,7 +322,7 @@
             <div
               class="h-12 w-12 rounded-full bg-gradient-to-r from-emerald-500 to-green-600 flex items-center justify-center">
               <span class="font-bold text-white">{{ Math.round((validFieldCount / totalRequiredFields) * 100)
-              }}%</span>
+                }}%</span>
             </div>
           </div>
           <div class="mt-3 h-2 bg-white/10 rounded-full overflow-hidden">
@@ -479,7 +479,7 @@ const age = computed(() => {
 
 const ageCategory = computed(() => {
   if (!age.value) return { text: "", class: "" };
-  if (age.value < 12) {
+  if (age.value < 13) {
     return {
       text: "زیر ۱۲ سال",
       class: "bg-gradient-to-r from-yellow-500 to-orange-500 text-white"
