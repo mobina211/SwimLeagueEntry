@@ -287,11 +287,11 @@
                 </span>
                 <div class="text-right mx-4">
                   <p class="text-sm text-cyan-200">تاریخ مسابقه</p>
-                  <p class="font-bold text-white text-sm">{{ age < 12 ? '۴ دی ۱۴۰۴' : '۵ دی ۱۴۰۴' }}</p>
+                  <p class="font-bold text-white text-sm">{{ age < 13 ? '۴ دی ۱۴۰۴' : '۵ دی ۱۴۰۴' }}</p>
                 </div>
                 <div class="text-right mx-4">
                   <p class="text-sm text-cyan-200">روز هفته</p>
-                  <p class="font-bold text-white text-sm">{{ age < 12 ? 'پنجشنبه' : 'جمعه' }}</p>
+                  <p class="font-bold text-white text-sm">{{ age < 13 ? 'پنجشنبه' : 'جمعه' }}</p>
                 </div>
                 <div class="text-right mx-4">
                   <p class="text-sm text-cyan-300">سن شناگر:</p>

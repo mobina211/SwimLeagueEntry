@@ -280,7 +280,7 @@ onMounted(() => {
 });
 
 const competitionDate = computed(() => {
-  return full.value.age < 12 ? '۴ دی ۱۴۰۴' : '۵ دی ۱۴۰۴';
+  return full.value.age < 13 ? '۴ دی ۱۴۰۴' : '۵ دی ۱۴۰۴';
 });
 
 // تابع بهبود یافته برای تولید کد رهگیری

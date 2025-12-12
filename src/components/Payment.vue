@@ -551,17 +551,17 @@ const displayMajor = computed(() => {
 
 // Competition date based on age
 const competitionDate = computed(() => {
-  return userData.value.age < 12 ? '۴ دی ۱۴۰۴' : '۵ دی ۱۴۰۴';
+  return userData.value.age < 13 ? '۴ دی ۱۴۰۴' : '۵ دی ۱۴۰۴';
 });
 
 const competitionDay = computed(() => {
-  return userData.value.age < 12 ? 'پنجشنبه' : 'جمعه';
+  return userData.value.age < 13 ? 'پنجشنبه' : 'جمعه';
 });
 
 // Competition time based on age
 const competitionTime = computed(() => {
   if (userData.value.age <= 12 && userData.value.age >= 10) {
-    return 'ساعت ۸:۰۰ تا ۱۱:۰۰ صبح'
+    return 'ساعت ۸:۰۰ تا ۱۰:۰۰ صبح'
   }
   else if (userData.value.age <= 9 && userData.value.age >= 6) {
     return 'ساعت ۱۱:۰۰ تا ۱۴:۰۰ صبح'

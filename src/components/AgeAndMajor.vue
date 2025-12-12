@@ -502,13 +502,13 @@ const userAge = computed(() => {
 
 // Competition date based on age
 const competitionDate = computed(() => {
-  return userAge.value < 12 ? '۴ دی ۱۴۰۴' : '۵ دی ۱۴۰۴';
+  return userAge.value < 13 ? '۴ دی ۱۴۰۴' : '۵ دی ۱۴۰۴';
 });
 
 // Competition time based on age
 const competitionTime = computed(() => {
   if (userAge.value <= 12 && userAge.value >= 10) {
-    return 'ساعت ۸:۰۰ تا ۱۱:۰۰ صبح'
+    return 'ساعت ۸:۰۰ تا ۱۰:۰۰ صبح'
   }
   else if (userAge.value <= 9 && userAge.value >= 6) {
     return 'ساعت ۱۱:۰۰ تا ۱۴:۰۰ صبح'
