@@ -203,7 +203,7 @@
                   <span class="text-2xl ml-2">📏</span>
                   <div>
                     <p class="text-sm text-cyan-200">متراژ مسابقه</p>
-                    <p class="font-bold text-white">{{ competitionDistance }} متر</p>
+                    <p class="font-bold text-white" style="white-space: pre-line">{{ competitionDistance }} متر</p>
                     <p class="text-xs text-cyan-300">استخر شهید رئیسی</p>
                   </div>
                 </div>
@@ -578,7 +578,7 @@ const competitionDistance = computed(() => {
     return '۵۰';
   }
   else {
-    return '۵۰ و ۱۰۰';
+    return 'پروانه و پشت ۵۰\nسینه و غورباقه ۱۰۰';
   }
 });
 

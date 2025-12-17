@@ -66,7 +66,7 @@
             <div class="h-10 w-px bg-cyan-400/50 hidden md:block"></div>
             <div class="text-center">
               <p class="text-cyan-200 text-sm">متراژ مسابقه</p>
-              <p class="text-2xl font-bold text-white">
+              <p class="text-2xl font-bold text-white" style="white-space: pre-line">
                 {{ competitionDistance }}
               </p>
               <p class="text-sm text-cyan-300">متر</p>
@@ -525,7 +525,7 @@ const competitionDistance = computed(() => {
     return '۵۰';
   }
   else {
-    return '۵۰ و ۱۰۰';
+    return 'پروانه و پشت ۵۰\nسینه و غورباقه ۱۰۰';
   }
 });
 
