@@ -26,6 +26,26 @@ const router = createRouter({
   }
 });
 
+router.beforeEach((to, from, next) => {
+  const allowedTransitions = {
+    "/form": ["/"],
+    "/age": ["/form"],
+    "/races": ["/age"],
+    "/upload": ["/races", "/age"],
+    "/payment": ["/upload", "/races"], 
+    "/done": ["/payment"]
+  };
+
+  if (allowedTransitions[to.path]) {
+    if (!allowedTransitions[to.path].includes(from.path)) {
+      next("/");
+      return;
+    }
+  }
+
+  next();
+});
+
 export default router;
 
 
