@@ -678,11 +678,11 @@ function back() {
   router.push("/upload");
 }
 
+
 async function finalize() {
-  //  بررسی و تولید کد رهگیری اگر موجود نباشد
+  // بررسی و تولید کد رهگیری
   let trackingCode = sessionStorage.getItem("tracking-code");
   if (!trackingCode) {
-    // تابع تولید مشابه RegistrationDone
     const nationalCode = userData.value.nationalCode || 'UNKNOWN';
     let hash = 0;
     const inputString = nationalCode + Date.now().toString();
@@ -696,7 +696,6 @@ async function finalize() {
       trackingCode += chars[Math.abs((hash >> (i * 4)) % chars.length)];
     }
 
-    // ذخیره در sessionStorage و localStorage
     sessionStorage.setItem("tracking-code", trackingCode);
     localStorage.setItem('tracking-code-' + nationalCode, trackingCode);
   }
@@ -710,14 +709,13 @@ async function finalize() {
   processing.value = true;
   error.value = "";
 
-  // Build final payload
   const finalPayload = {
     timestamp: new Date().toISOString(),
-    trackingCode: trackingCode,   //  ارسال به شیت
+    trackingCode: trackingCode,
     personal: userData.value,
     registration: {
       majors: selectedMajors.value,
-      majorTitles: selectedMajors.value.map(major => getMajorTitle(major)),
+      majorTitles: selectedMajors.value.map(getMajorTitle),
       totalFee: totalFee.value,
       perMajorFee: perMajorFee.value,
       hasDiscount: hasDiscount.value,
@@ -729,7 +727,6 @@ async function finalize() {
     },
     uploads: uploads
   };
-
 
   try {
     const res = await fetch(SHEET_ENDPOINT, {
@@ -743,20 +740,31 @@ async function finalize() {
     }
 
     const txt = await res.text();
-    // Save server response
-    sessionStorage.setItem("submission-response", txt || "ok");
+    let serverResponse;
+    try {
+      serverResponse = JSON.parse(txt);
+    } catch {
+      serverResponse = { ok: true };
+    }
+
+    if (!serverResponse.ok) {
+      error.value = serverResponse.error || "خطا در ثبت نام. لطفاً دوباره تلاش کنید";
+      return;
+    }
+
+    // ثبت موفق
+    sessionStorage.setItem("submission-response", txt);
     sessionStorage.setItem("registration-complete", "true");
-
-    // Save final data for success page
     sessionStorage.setItem("final-registration", JSON.stringify(finalPayload));
-
     router.push("/done");
+
   } catch (err) {
     error.value = "خطا در ارسال اطلاعات. لطفاً دوباره تلاش کنید: " + String(err);
   } finally {
     processing.value = false;
   }
 }
+
 </script>
 
 <style>
