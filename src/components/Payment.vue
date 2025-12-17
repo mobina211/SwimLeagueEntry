@@ -342,7 +342,7 @@
                     رسید بانکی با موفقیت آپلود شد
                   </p>
                   <p class="text-cyan-200/70 text-sm">
-                    حداکثر حجم: ۵ مگابایت • فرمت‌های مجاز: JPG, PNG
+                    حداکثر حجم: ۱ مگابایت • فرمت‌های مجاز: JPG, PNG
                   </p>
                   <p class="text-cyan-300/70 text-xs mt-2">
                     مبلغ قابل پرداخت: {{ totalFee.toLocaleString('fa-IR') }} تومان
@@ -643,8 +643,8 @@ async function onReceipt(e) {
   if (!file) return;
 
   // Check file size (5MB max)
-  if (file.size > 5 * 1024 * 1024) {
-    error.value = "حجم فایل باید کمتر از ۵ مگابایت باشد";
+  if (file.size > 1 * 1024 * 1024) {
+    error.value = "حجم فایل باید کمتر از ۱ مگابایت باشد";
     return;
   }
 

@@ -142,7 +142,7 @@
                     تصویر بیمه با موفقیت آپلود شد
                   </p>
                   <p class="text-cyan-200/70 text-sm">
-                    حداکثر حجم: ۵ مگابایت • فرمت‌های مجاز: JPG, PNG, PDF
+                    حداکثر حجم: ۱ مگابایت • فرمت‌های مجاز: JPG, PNG, PDF
                   </p>
                 </div>
 
@@ -228,7 +228,7 @@
                     تصویر شناسنامه با موفقیت آپلود شد
                   </p>
                   <p class="text-cyan-200/70 text-sm">
-                    حداکثر حجم: ۵ مگابایت
+                    حداکثر حجم: ۱ مگابایت
                   </p>
                 </div>
 
@@ -361,7 +361,7 @@ function readFile(file) {
 
 //   // Check file size (5MB max)
 //   if (file.size > 5 * 1024 * 1024) {
-//     error.value = "حجم فایل باید کمتر از ۵ مگابایت باشد";
+//     error.value = "حجم فایل باید کمتر از ۱ مگابایت باشد";
 //     return;
 //   }
 
@@ -394,8 +394,8 @@ async function onFile(e, key) {
   if (!file) return;
 
   // حجم
-  if (file.size > 5 * 1024 * 1024) {
-    error.value = "حجم فایل باید کمتر از ۵ مگابایت باشد";
+  if (file.size > 1 * 1024 * 1024) {
+    error.value = "حجم فایل باید کمتر از ۱ مگابایت باشد";
     return;
   }
 
