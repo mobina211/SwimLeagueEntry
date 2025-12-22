@@ -578,7 +578,7 @@ const competitionDistance = computed(() => {
     return '۵۰';
   }
   else {
-    return 'پروانه و پشت ۵۰\nسینه و غورباقه ۱۰۰';
+    return 'پروانه و پشت ۵۰\nسینه و قورباغه ۱۰۰';
   }
 });
 
