@@ -117,7 +117,7 @@
           <p class="text-xl text-cyan-100 mb-8 font-medium">برای شروع ثبت‌نام روی دکمه کلیک کنید</p>
 
           <button @click="go"
-            class="relative px-10 py-5 rounded-2xl bg-linear-to-r from-cyan-500 to-blue-600 text-white font-extrabold text-xl shadow-2xl hover:shadow-cyan-500/30 transition-all duration-500 hover:-translate-y-1 active:translate-y-0 overflow-hidden group">
+            class="relative px-10 py-5 rounded-2xl bg-linear-to-r from-red-500 to-red-500 text-black font-extrabold text-xl shadow-2xl hover:shadow-cyan-500/30 transition-all duration-500 hover:-translate-y-1 active:translate-y-0 overflow-hidden group">
 
             <!-- Button shine effect -->
             <span
@@ -125,9 +125,9 @@
 
             <!-- Button content -->
             <div class="relative flex items-center justify-center">
-              <span class="mr-3">شروع ثبت‌نام</span>
+              <span class="mr-3">ثبت نام به اتمام رسید</span>
               <span
-                class="text-2xl transition-all duration-300 group-hover:translate-x-2 group-hover:scale-110 inline-block">→</span>
+                class="text-2xl transition-all duration-300 group-hover:translate-x-2 group-hover:scale-110 inline-block"></span>
             </div>
 
             <!-- Water ripple effect -->
