@@ -9,12 +9,12 @@ import RegistrationDone from "../components/RegistrationDone.vue";
 
 const routes = [
   { path: "/", component: WelcomeBanner },
-  { path: "/form", component: UserForm },
-  { path: "/age", component: AgeAndMajor },
-  { path: "/races", component: RaceSelection },
-  { path: "/upload", component: ImagesUploading },
-  { path: "/payment", component: Payment },
-  { path: "/done", component: RegistrationDone }
+  // { path: "/form", component: UserForm },
+  // { path: "/age", component: AgeAndMajor },
+  // { path: "/races", component: RaceSelection },
+  // { path: "/upload", component: ImagesUploading },
+  // { path: "/payment", component: Payment },
+  // { path: "/done", component: RegistrationDone }
 ];
 
 const router = createRouter({
@@ -32,7 +32,7 @@ router.beforeEach((to, from, next) => {
     "/age": ["/form"],
     "/races": ["/age"],
     "/upload": ["/races", "/age"],
-    "/payment": ["/upload", "/races"], 
+    "/payment": ["/upload", "/races"],
     "/done": ["/payment"]
   };
 
