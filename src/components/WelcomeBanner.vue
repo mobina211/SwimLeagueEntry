@@ -56,11 +56,11 @@
         <div class="">
           <h1 class="text-4xl font-black text-center mb-6 leading-tight">
             <div class="bg-linear-to-r from-white via-cyan-100 to-blue-200 bg-clip-text text-transparent">
-مسابقات استانی شنا            </div>
+              مسابقات استانی شنا </div>
             <div class="mt-1 bg-linear-to-r from-cyan-100 via-cyan-300 to-blue-600 bg-clip-text text-transparent">
               استخر شهید رئیسی
             </div>
-            <span class="block text-xl mt-2 text-yellow-300">ویژه پسران  </span>
+            <span class="block text-xl mt-2 text-yellow-300">ویژه پسران </span>
           </h1>
 
           <!-- Swimming lanes design -->
@@ -116,25 +116,36 @@
         <div class="text-center">
           <p class="text-xl text-cyan-100 mb-8 font-medium">برای شروع ثبت‌نام روی دکمه کلیک کنید</p>
 
-          <button @click="go"
-            class="relative px-10 py-5 rounded-2xl bg-linear-to-r from-red-500 to-red-500 text-black font-extrabold text-xl shadow-2xl hover:shadow-cyan-500/30 transition-all duration-500 hover:-translate-y-1 active:translate-y-0 overflow-hidden group">
-
+          <a :href="compUnder12" target="_blank" class="relative inline-block px-10 py-5 rounded-2xl
+         bg-linear-to-r from-blue-500 to-teal-500
+         text-white font-extrabold text-xl
+         shadow-2xl hover:shadow-cyan-500/30
+         transition-all duration-500
+         hover:-translate-y-1 active:translate-y-0
+         overflow-hidden group">
             <!-- Button shine effect -->
-            <span
-              class="absolute top-0 left-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
+            <span class="absolute top-0 left-0 w-full h-full
+           bg-linear-to-r from-transparent via-white/20 to-transparent
+           -translate-x-full group-hover:translate-x-full
+           transition-transform duration-1000">
+            </span>
 
             <!-- Button content -->
             <div class="relative flex items-center justify-center">
-              <span class="mr-3">ثبت نام به اتمام رسید</span>
-              <span
-                class="text-2xl transition-all duration-300 group-hover:translate-x-2 group-hover:scale-110 inline-block"></span>
+              <span class="mr-3">دانلود نتایج مسابقات</span>
+              <span class="text-2xl transition-all duration-300
+             group-hover:translate-x-2 group-hover:scale-110 inline-block">
+                📄
+              </span>
             </div>
 
-            <!-- Water ripple effect -->
-            <div
-              class="absolute inset-0 rounded-2xl border-2 border-cyan-300/50 group-hover:border-cyan-300/80 transition-all duration-500">
+            <!-- Border effect -->
+            <div class="absolute inset-0 rounded-2xl border-2
+           border-cyan-300/50 group-hover:border-cyan-300/80
+           transition-all duration-500">
             </div>
-          </button>
+          </a>
+
 
           <!-- Additional info -->
           <p class="text-gray-400 mt-6 text-sm">
@@ -144,19 +155,17 @@
 
 
         <div style="width: 100%; display: flex; justify-content: center; margin-top: 30px;">
-         <iframe
-         src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d546.1910970342377!2d50.009151128914965!3d36.293049182240516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1765114133093!5m2!1sen!2s"
-         width="300"
-         height="200"
-         style="border:0;"
-         allowfullscreen=""
-         loading="lazy">
-         </iframe>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d546.1910970342377!2d50.009151128914965!3d36.293049182240516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1765114133093!5m2!1sen!2s"
+            width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy">
+          </iframe>
         </div>
 
-         <div class="text-right">
-            <p class="text-sm text-cyan-200" style="display: flex; justify-content: center; margin-top: 30px;">پشتیبانی  </p>
-            <p class="font-bold text-white dir-ltr" style="display: flex; justify-content: center; margin-top: 7px;">09382550111</p>
+        <div class="text-right">
+          <p class="text-sm text-cyan-200" style="display: flex; justify-content: center; margin-top: 30px;">پشتیبانی
+          </p>
+          <p class="font-bold text-white dir-ltr" style="display: flex; justify-content: center; margin-top: 7px;">
+            09382550111</p>
         </div>
 
 
@@ -170,6 +179,7 @@
 
 <script setup>
 import { useRouter } from "vue-router";
+import compUnder12 from "../assets/compUnder12.pdf"
 const router = useRouter();
 // const go = () => router.push("/form");
 </script>
