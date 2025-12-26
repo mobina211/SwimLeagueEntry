@@ -113,9 +113,7 @@
         </div>
 
         <!-- Call to action -->
-        <div class="text-center">
-          <p class="text-xl text-cyan-100 mb-8 font-medium">برای شروع ثبت‌نام روی دکمه کلیک کنید</p>
-
+        <div class="text-center space-x-5">
           <a :href="compUnder12" target="_blank" class="relative inline-block px-10 py-5 rounded-2xl
          bg-linear-to-r from-blue-500 to-teal-500
          text-white font-extrabold text-xl
@@ -132,11 +130,7 @@
 
             <!-- Button content -->
             <div class="relative flex items-center justify-center">
-              <span class="mr-3">دانلود نتایج مسابقات</span>
-              <span class="text-2xl transition-all duration-300
-             group-hover:translate-x-2 group-hover:scale-110 inline-block">
-                📄
-              </span>
+              <span class="mr-3">نتایج مسابقات زیر 12 سال</span>
             </div>
 
             <!-- Border effect -->
@@ -146,11 +140,31 @@
             </div>
           </a>
 
+          <a :href="compAbove12" target="_blank" class="relative inline-block px-10 py-5 rounded-2xl
+         bg-linear-to-r from-teal-500 to-blue-500
+         text-white font-extrabold text-xl
+         shadow-2xl hover:shadow-cyan-500/30
+         transition-all duration-500
+         hover:-translate-y-1 active:translate-y-0
+         overflow-hidden group">
+            <!-- Button shine effect -->
+            <span class="absolute top-0 left-0 w-full h-full
+           bg-linear-to-r from-transparent via-white/20 to-transparent
+           -translate-x-full group-hover:translate-x-full
+           transition-transform duration-1000">
+            </span>
 
-          <!-- Additional info -->
-          <p class="text-gray-400 mt-6 text-sm">
-            ثبت‌نام برای والدین و شرکت‌کنندگان بالای ۱۴ سال امکان‌پذیر است
-          </p>
+            <!-- Button content -->
+            <div class="relative flex items-center justify-center">
+              <span class="mr-3">نتایج مسابقات بالای 12 سال</span>
+            </div>
+
+            <!-- Border effect -->
+            <div class="absolute inset-0 rounded-2xl border-2
+           border-cyan-300/50 group-hover:border-cyan-300/80
+           transition-all duration-500">
+            </div>
+          </a>
         </div>
 
 
@@ -180,6 +194,8 @@
 <script setup>
 import { useRouter } from "vue-router";
 import compUnder12 from "../assets/compUnder12.pdf"
+import compAbove12 from "../assets/compAbove12.pdf"
+
 const router = useRouter();
 // const go = () => router.push("/form");
 </script>
